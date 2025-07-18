@@ -1,0 +1,49 @@
+== Visualization
+
+Under the "Visualization" main menu item, there are five types of raw data visualization. The five items are "3D Visualization", "Data Summary", "Create Boxchart", "Create Histogram" and "Create Normal Probability Chart". For the Boxchart, Histogram and Normal Probability Charts, you can either select one metric in the trial (which selects all events by default), or expand the metric and select events of interest.
+
+[[ThreeDVisualization]]
+== 3D Visualization
+
+When the "3D Visualization" is requested, PerfExplorer examines the data to try to determine the most interesting events in the trial. That is, for the selected metric in the selected trial, the database will calculate the weighted relative variance for each event across all threads of execution, in order to find the top four "significant" events. These events are selected by calculating: stddev(exclusive) / (max(exclusive) - min(exclusive)) * exclusive_percentage. After selecting the top four events, they are graphed in an OpenGL window.
+
+.3D Visualization of multivariate data
+[#perfexplorer.visualization.threed]
+image::/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/3dvisualization.png[/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/3dvisualization,width=576]
+
+[[DataSummary]]
+== Data Summary
+
+In order to see a summary of the performance data in the database, select the "Show Data Summary" item under the "Visualization" main menu item.
+
+.Data Summary Window
+[#perfexplorer.visualization.datasummary]
+image::/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/datasummary.png[/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/datasummary,width=576]
+
+[[CreateBoxchart]]
+== Creating a Boxchart
+
+In order to see a boxchart summary of the performance data in the database, select the "Create Boxchart" item under the "Visualization" main menu item.
+
+.Boxchart
+[#perfexplorer.visualization.boxchart]
+image::/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/boxchart.png[/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/boxchart,width=576]
+
+[[CreateHistogram]]
+== Creating a Histogram
+
+In order to see a histogram summary of the performance data in the database, select the "Create Histogram" item under the "Visualization" main menu item.
+
+.Histogram
+[#perfexplorer.visualization.histogram]
+image::/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/histogram2.png[/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/histogram2,width=576]
+
+[[CreateNormalProbability]]
+== Creating a Normal Probability Chart
+
+In order to see a normal probability summary of the performance data in the database, select the "Create NormalProbability" item under the "Visualization" main menu item.
+
+.Normal Probability
+[#perfexplorer.visualization.normalprobability]
+image::/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/normalprobability.png[/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/normalprobability,width=576]
+

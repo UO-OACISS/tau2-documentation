@@ -1,0 +1,35 @@
+= TAU User Guide
+
+:doctype: book
+:toc:
+:toc-title: Table of Contents
+:toclevels: 3
+:sectnums:
+:source-highlighter: rouge
+:icons: font
+:title-logo-image: image:NewTauLogo.png[TAU Logo,150]
+include::../../partials/_attributes.adoc[]
+
+[preamble]
+--
+include::../../partials/_legalnotice.adoc[]
+--
+
+
+== TAU preface
+
+TAU Performance System® is a portable profiling and tracing toolkit for performance analysis of parallel programs written in Fortran, C, C++, Java, and Python. TAU (Tuning and Analysis Utilities) is capable of gathering performance information through instrumentation of functions, methods, basic blocks, and statements. The TAU API also provides selection of profiling groups for organizing and controlling instrumentation. Calls to the TAU API are made by probes inserted into the execution of the application via source transformation, compiler directives or by library interposition.
+
+This guide is organized into different sections. Readers wanting to get started right way can skip to the link:#ApplicationScenario[Common Profile Requests] section for step-by-step instructions for obtaining difference kinds of performance data. Or browse the link:#StartersGuide[starters guide] for a quick reference to common TAU commands and variables.
+
+TAU can be found on the web at: http://tau.uoregon.edu
+
+[[TAUUSERMANUAL]]
+== Tau User Guide
+
+include::../paraprof/book.adoc[]
+
+include::../perfexplorer/perfexplorer.adoc[]
+
+include::../perfdmf/book.adoc[]
+

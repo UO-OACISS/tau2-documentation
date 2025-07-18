@@ -1,0 +1,42 @@
+= TAU Reference Guide
+
+:doctype: book
+:toc:
+:toc-title: Table of Contents
+:toclevels: 3
+:sectnums:
+:source-highlighter: rouge
+:icons: font
+:title-logo-image: image:NewTauLogo.png[TAU Logo,150]
+include::../../partials/_attributes.adoc[]
+
+[preamble]
+--
+include::../../partials/_legalnotice.adoc[]
+--
+
+
+include::../newguide/introduction.adoc[]
+
+include::instrumentation.adoc[]
+
+include::tracing.adoc[]
+
+include::../memorytracking/tutorial.adoc[]
+
+include::../taujava/taujava.adoc[]
+
+include::../taueclipse/eclipseplugin.adoc[]
+
+include::../taudocs/tauutils.adoc[]
+
+include::../perfdmf/book.adoc[]
+
+include::../newguide/windows.adoc[]
+
+include::../APIs/tauapis.adoc[]
+
+include::../APIs/taumapping.adoc[]
+
+include::../newguide/environment.adoc[]
+

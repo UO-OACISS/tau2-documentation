@@ -1,0 +1,20 @@
+= TAU Install Guide
+
+:doctype: book
+:toc:
+:toc-title: Table of Contents
+:toclevels: 3
+:sectnums:
+:source-highlighter: rouge
+:icons: font
+:title-logo-image: image:NewTauLogo.png[TAU Logo,150]
+include::../../partials/_attributes.adoc[]
+
+[preamble]
+--
+include::../../partials/_legalnotice.adoc[]
+--
+
+
+include::../newguide/introduction.adoc[]
+

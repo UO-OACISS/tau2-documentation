@@ -1,0 +1,22 @@
+== ParaProf - User's Manual
+
+include::intro.adoc[]
+
+include::views.adoc[]
+
+include::management.adoc[]
+
+include::3d.adoc[]
+
+include::thread.adoc[]
+
+include::function.adoc[]
+
+include::phase.adoc[]
+
+include::comparison.adoc[]
+
+include::misc.adoc[]
+
+include::preferences.adoc[]
+

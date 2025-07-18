@@ -1,0 +1,20 @@
+== Comparative Analysis
+
+ParaProf can perform cross-thread and cross-trial anaylsis. In this way, you can compare two or more trials and/or threads in a single display.
+
+[[paraprof.comparison.using]]
+== Using Comparitive Analysis
+
+Comparative analysis in ParaProf is based on individual threads of execution. There is a maximum of one Comparison window for a given ParaProf session. To add threads to the window, right click on them and select "Add Thread to Comparison Window". The Comparison Window will pop up with the thread selected. Note that "mean" and "std. dev." are considered threads for this any most other purposes.
+
+.Comparison Window (initial)
+image::/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/comparison1.png[/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/comparison1,width=375]
+
+Add additional threads, from any trial, by the same means.
+
+.Comparison Window (2 trials)
+image::/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/comparison2.png[/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/comparison2,width=375]
+
+.Comparison Window (3 threads)
+image::/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/comparison3.png[/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/comparison3,width=375]
+

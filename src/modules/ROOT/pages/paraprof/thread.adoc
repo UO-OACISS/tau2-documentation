@@ -1,0 +1,74 @@
+== Thread Based Displays
+
+ParaProf displays several windows that show data for one thread of execution. In addition to per thread values, the users may also select _mean_ or _standard deviation_ as the "thread" to display. In this mode, the mean or standard deviation of the values across the threads will be used as the value.
+
+[[paraprof.threaddatawindow]]
+== Thread Bar Graph
+
+.Thread Bar Graph
+image::/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/threaddatawindow.png[/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/threaddatawindow,width=324]
+
+This display graphs each function on a particular thread for comparison. The metric, units, and sort order can be changed from the _Options_ menu.
+
+[[paraprof.threadstatwindow]]
+== Thread Statistics Text Window
+
+.Thread Statistics Text Window
+image::/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/threadstatwindow.png[/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/threadstatwindow,width=508]
+
+This display shows a `pprof` style text view of the data.
+
+[[paraprof.treetablewindow]]
+== Thread Statistics Table
+
+.Thread Statistics Table, inclusive and exclusive
+[#paraprof.thread.treetable1]
+image::/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/treetable1.png[/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/treetable1,width=412]
+
+This display shows the callpath data in a table. Each callpath can be traced from root to leaf by opening each node in the tree view. A colorscale immediately draws attention to "hot spots", areas that contain highest values.
+
+.Thread Statistics Table
+[#paraprof.thread.treetable2]
+image::/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/treetable2.png[/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/treetable2,width=412]
+
+.Thread Statistics Table
+[#paraprof.thread.treetable3]
+image::/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/treetable3.png[/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/treetable3,width=412]
+
+The display can be used in one of two ways, in "inclusive/exclusive" mode, both the inclusive and exclusive values are shown for each path, see link:#paraprof.thread.treetable1[Thread Statistics Table&#44; inclusive and exclusive] for an example.
+
+When this option is off, the inclusive value for a node is show when it is closed, and the exclusive value is shown when it is open. This allows the user to more easily see where the time is spent since the total time for the application will always be represented in one column. See link:#paraprof.thread.treetable2[Thread Statistics Table] and link:#paraprof.thread.treetable3[Thread Statistics Table] for examples. This display also functions as a regular statistics table without callpath data. The data can be sorted by columns by clicking on the column heading. When multiple metrics are available, you can add and remove columns for the display using the menu.
+
+[[paraprof.callgraphwindow]]
+== Call Graph Window
+
+.Call Graph Window
+image::/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/callgraph.png[/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/callgraph,width=291]
+
+This display shows callpath data in a graph using two metrics, one determines the width, the other the color. The full name of the function as well as the two values (color and width) are displayed in a tooltip when hovering over a box. By clicking on a box, the actual ancestors and descendants for that function and their paths (arrows) will be highlighted with blue. This allows you to see which functions are called by which other functions since the interplay of multiple paths may obscure it.
+
+[[paraprof.callpaththreadrelations]]
+== Thread Call Path Relations Window
+
+.Thread Call Path Relations Window
+[#paraprof.thread.callpathrelations]
+image::/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/callpaththreadrelations.png[/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/callpaththreadrelations,width=460]
+
+This display shows callpath data in a `gprof` style view. Each function is shown with its immediate parents. For example, link:#paraprof.thread.callpathrelations[Thread Call Path Relations Window] shows that `MPI_Recv()` is call from two places for a total of `9.052` seconds. Most of that time comes from the 30 calls when `MPI_Recv()` is called by `MPIScheduler::postMPIRecvs()`. The other 60 calls do not amount to much time.
+
+[[paraprof.usereventstats]]
+== User Event Statistics Window
+
+.User Event Statistics Window
+image::/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/usereventstats.png[/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/usereventstats,width=537]
+
+This display shows a `pprof` style text view of the user event data. Right clicking on a User Event will give you the option to open a Bar Graph for that particular User Event across all threads. See link:#paraprof.userevent.bargraph[???]
+
+[[paraprof.usereventthreadbar]]
+== User Event Thread Bar Chart
+
+.User Event Thread Bar Chart Window
+image::/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/usereventthreadbargraph.png[/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/usereventthreadbargraph,width=537]
+
+This display shows a particular thread's user defined event statistics as a bar chart. This is the same data from the link:#paraprof.usereventstats[???], in graphical form.
+

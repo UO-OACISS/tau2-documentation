@@ -1,0 +1,54 @@
+== Miscellaneous Displays
+
+[[paraprof.userevent.bargraph]]
+== User Event Bar Graph
+
+In addition to displaying the text statistics for User Defined Events, ParaProf can also graph a particular User Event across all threads.
+
+.User Event Bar Graph
+image::/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/usereventbargraph.png[/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/usereventbargraph,width=303]
+
+This display graphs the value that the particular user event had for each thread.
+
+[[paraprof.ledgers]]
+== Ledgers
+
+ParaProf has three ledgers that show the functions, groups, and user events.
+
+[[paraprof.ledgers.function]]
+=== Function Ledger
+
+.Function Ledger
+image::/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/functionledger.png[/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/functionledger,width=264]
+
+The function ledger shows each function along with its current color. As with other displays showing functions, you may right-click on a function to launch other function-specific displays.
+
+[[paraprof.ledgers.group]]
+=== Group Ledger
+
+.Group Ledger
+image::/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/groupledger.png[/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/groupledger,width=192]
+
+The group ledger shows each group along with its current color. This ledger is especially important because it gives you the ability to mask all of the other displays based on group membership. For example, you can right-click on the `MPI` group and select "Show This Group Only" and all of the windows will now mask to only those functions which are members of the `MPI` group. You may also mask by the inverse by selecting "Show All Groups Except This One" to mask out a particular group.
+
+[[paraprof.ledgers.userevent]]
+=== User Event Ledger
+
+.User Event Ledger
+image::/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/usereventledger.png[/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/usereventledger,width=197]
+
+The user event ledger shows each user event along with its current color.
+
+[[paraprof.createselectivefile]]
+== Selective Instrumentation File Generator
+
+ParaProf can also help you refine your program performance by excluding some functions from instrumentation. You can select rules to determine which function get excluded; both rules must be true for a given function to be excluded. Below each function that will be excluded based on these rules are listed.
+
+.Selective Instrumentation Dialog
+image::/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/ParaProfSelectiveFile.png[/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/ParaProfSelectiveFile,width=303]
+
+[NOTE]
+====
+Only the functions profilied in ParaProf can be excluded. If you had previously setup selective instrumentation for this application the functions that where previously excluded will not longer be excluded.
+====
+
