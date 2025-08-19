@@ -1,34 +1,38 @@
-== Tracing
+[[tracingReference]]
+= Tracing
 
 == How to configure tracing
-
 TAU must be configured with the `-TRACE` option to generate event traces. This can be used in conjunction with `-PROFILE` to generate both profiles and traces. The traces are stored in a directory specified by the environment variable `TRACEDIR`, or the current directory, by default. The environment variables `TAU_TRACEFILE` may be used to specify the name of Vampir trace file. When this variable is set, trace files are automatically merged and the tau2vtf is invoked to convert the merged trace file to VTF3 trace format. This conversion takes place on node 0, thread 0. The intermediate trace files are deleted. To retain the trace files, the user can set the environment variable `TAU_KEEP_TRACEFILES` to true. When `TAU_TRACEFILE` is not specified, the user needs to merge and convert the traces as below. Example:
 
-....
+[source]
+----
 % ./configure -arch=sgi64 -TRACE  -mpi -vtf=/usr/local/vtf3-1.34 -slog2
 % make clean; make install
 % setenv TRACEDIR /users/sameer/tracedata/experiment56
 % mpirun -np 4 matrix
-    
-....
+----
 
 This generates files named
 
-....
+[source]
+----
 tautrace.<node>.<context>.<thread>.trc and events.<node>.edf
-    
-....
+----
 
 When generating a Vampir Trace Format (otf or vtf) these environment variables maybe helpful:
 
-* `VT_FILE_PREFIX`Prefix used for trace filenames. Default is "a".
-* `VT_COMPRESSION`Write compressed trace files? Default is "yes"
+* VT_FILE_PREFIXPrefix used for trace
+        filenames. Default is "a".
+* VT_COMPRESSIONWrite compressed trace
+      files? Default is "yes"
+
 
 Using the utility tau_treemerge.pl, these traces are then merged as shown below:
 
-....
+[source]
+----
 % tau_treemerge.pl
-....
+----
 
 This generates tau.trc as the merged trace file and tau.edf as the merged event description file.
 
@@ -36,24 +40,27 @@ tau_treemerge.pl can take an optional argument (with -n <value>) to specify the 
 
 To convert merged or per-thread traces to another trace format, the utilities, tau2otf, tau_convert, tau2vtf, or tau2slog2 are used as shown below:
 
-....
+[source]
+----
 Usage: tau2otf [ -n  streams  ] [ -nomessage  ] [ -v  ] [ -z ]
  -n streams : Specifies the number of output streams (default is 1)
  -nomessage : Suppresses printing of message information in the trace
  -v         : Verbose mode sends trace event descriptions to the standard output
  as they are converted
  -z         : Compressed output
-....
+----
 
 Here is an example:
 
-....
+[source]
+----
 %> tau2otf tau.trc tau.edf out.otf
-....
+----
 
 Converting to Vampir's VTF format:
 
-....
+[source]
+----
 % tau2vtf
 Usage: tau2vtf <TAU trace> <edf file> <out file> [-a|-fa]
                [-nomessage] [-v]
@@ -66,12 +73,12 @@ Usage: tau2vtf <TAU trace> <edf file> <out file> [-a|-fa]
  tau2vtf merged.trc tau.edf app.vpt.gz
 % tau2vtf matrix.trc tau.edf matrix.vpt.gz
 % vampir matrix.vpt.gz
-  
-....
+----
 
 To generate slog2 trace files that may be visualized using Jumpshot, we recommend using the slog2 SDK and Jumpshot bundled with TAU.
 
-....
+[source]
+----
 % configure -slog2 -TRACE ...
 % tau2slog2
 tau2slog2 converts a TAU formatted trace file to the SLOG2 format
@@ -79,12 +86,12 @@ tau2slog2 converts a TAU formatted trace file to the SLOG2 format
 Usage: tau2slog2 <tau_tracefile> <edf_file> -o <slog_tracefile>
 For e.g.,
 % tau2slog2 app.trc tau.edf -o app.slog2
-    
-....
+----
 
 To generate traces that may be visualized using Vampir, we recommend using tau2vtf over the older tau_convert tool. tau2vtf can produce binary traces with user-defined events (hardware performance counters from PAPI etc.) while tau_convert cannot do this. Binary traces load faster in Vampir.
 
-....
+[source]
+----
 % tau_convert
 usage: tau_convert [-alog | -SDDF | -dump | -paraver [-t] | -pv |
        -vampir [-longsymbolbugfix] [-compact] [-user|-class|-all]
@@ -92,35 +99,39 @@ usage: tau_convert [-alog | -SDDF | -dump | -paraver [-t] | -pv |
  Note: -vampir option assumes multiple threads/node
  Note: -t option used in conjunction with -paraver option assumes
        multiple threads/node
-....
+----
 
 To view the dump of the trace in text form, use
 
-....
+[source]
+----
 % tau_convert -dump matrix.trc tau.edf
-....
+----
 
 tau_convert can also be used to convert traces to the http://www.vampir-ng.de/[Vampir] trace format. For single-threaded applications (such as the MPI application above), the `-pv` option is used to generate Vampir traces as follows:
 
-....
+[source]
+----
 % tau_convert -pv matrix.trc tau.edf matrix.pv
 % vampir matrix.vpt.gz &
-....
+----
 
 To convert TAU traces to `SDDF` or `ALOG` trace formats, `-SDDF` and `-alog` options may be used. When multiple threads are used on a node (as with `-jdk, -pthread or -tulipthread` options during configure), the `-vampir` option is used to convert the traces to the vampir trace format, as shown below:
 
-....
+[source]
+----
 % tau_convert -vampir smartsapp.trc tau.edf smartsapp.pv
 % vampir smartsapp.pv &
-....
+----
 
 To convert to the Paraver trace format, use the `-paraver` option for single threaded programs and `-paraver -t` option for multi-threaded programs.
 
-_NOTE:_ To ensure that inter-process communication events are recorded in the traces, in addition to the routine transitions, it is necessary to insert `TAU_TRACE_SENDMSG` and `TAU_TRACE_RECVMSG` macro calls in the source code during instrumentation. This is not needed when the TAU MPI wrapper library is used.
+NOTE: To ensure that inter-process communication events are recorded in the traces, in addition to the routine transitions, it is necessary to insert To ensure that inter-process communication events are recorded in the traces, in addition to the routine transitions, it is necessary to insert `TAU_TRACE_SENDMSG` and `TAU_TRACE_RECVMSG` macro calls in the source code during instrumentation. This is not needed when the TAU MPI wrapper library is used.
 
 Vampir format traces may be converted to TAU profiles using the vtf2profile tool.
 
-....
+[source]
+----
 % vtf2profile -f matrix.vpt.gz -p profiledatadir
 % vtf2profile
 Usage: vtf2profile [options]
@@ -136,5 +147,5 @@ Usage: vtf2profile [options]
 * '-i' used as -i <from> <to> where 'from' and 'to' are*
 *        integers to mark the desired profiling interval.*
 **********************************************************
-....
+----
 

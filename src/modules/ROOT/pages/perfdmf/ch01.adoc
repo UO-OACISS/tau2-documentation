@@ -1,18 +1,17 @@
-== Introduction
+[[taudb-intro]]
+= Introduction
 
 TAUdb (TAU Database), formerly known as PerfDMF (Performance Data Management Framework) is a an API/Toolkit that sits atop a DBMS to manage and analyze performance data. The API is available in its native Java form as well as C.
 
-[[taudb.prereq]]
+[[taudb-prereq]]
 == Prerequisites
-
 [arabic]
 . A supported Database Management System (DBMS). TAUdb currently supports PostgreSQL, MySQL, Oracle, H2, and Derby. For use with the C API, only PostgreSQL is supported (SQLite support is currently being evaluated). Because they are Java only, H2 and Derby can NO be accessed with the C API.
 . Java 1.5.
 . If the C API is desired, a working C compiler is required, along with the following libraries: libpq (PostgreSQL libraries), libxml2, libz, libuuid. These libraries are all commonly installed by default on *NIX systems.
 
-[[taudb.installation]]
+[[taudb-installation]]
 == Installation
-
 The TAUdb utilities and applications are installed as part of the standard TAU release. Shell scripts are installed in the TAU bin directory to configure and run the utilities. It is assumed that the user has installed TAU and run TAU's configure and 'make install'.
 
 [arabic]

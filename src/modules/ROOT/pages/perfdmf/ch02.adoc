@@ -1,33 +1,34 @@
-== Using TAUdb
+[[taudb-using]]
+= Using TAUdb
 
 The easiest way to interact with TAUdb is to use ParaProf which provides a GUI interface to all of the database information. In addition, the following commandline utilities are provided.
 
-[[perfdmf.createapp]]
+[[perfdmf-createapp]]
 == perfdmf_createapp (deprecated - only supported for older PerfDMF databases)
-
 This utility creates applications with a given name
 
-....
+[source]
+----
 $ perfdmf_createapp -n "New Application"
 Created Application, ID: 24
-....
+----
 
-[[perfdmf.createexp]]
+[[perfdmf-createexp]]
 == perfdmf_createexp (deprecated - only supported for older PerfDMF databases)
-
 This utility creates experiments with a given name, under a specified application
 
-....
+[source]
+----
 $ perfdmf_createexp -a 24 -n "New Experiment"
 Created Experiment, ID: 38
-....
+----
 
-[[taudb.loadtrial]]
+[[taudb-loadtrial]]
 == taudb_loadtrial
-
 This utility uploads a trial to the database with a given name, under a specified experiment
 
-....
+[source]
+----
 $ taudb_loadtrial -h
 Usage: perfdmf_loadtrial -a <appName> -x <expName> -n <name> 
 [options] <files>
@@ -86,13 +87,15 @@ Examples:
     "parametric" under the application named "NPB2.3" and give the 
     trial the name "64".  The application and experiment will be 
     created if not found.
-  
-....
+----
 
 TAUdb supports a large number of parallel profile formats:
 
-[[taudb.views]]
-== TAUdb Views
+:leveloffset: +1
+include::dataformats.adoc[]
+:leveloffset: -1
 
+[[taudb-views]]
+== TAUdb Views
 In order to provide flexible data management, the application / experiment / trial hierarchy was removed in the conversion from PerfDMF to TAUdb. In addition, trial metadata was promoted from an XML blob in PerfDMF to queryable tables. Users can now organize their data in arbitrary hierarchies using Views and SubViews. Creating and using Views is outlined in the ParaProf User Manual, in Chapter 2.
 

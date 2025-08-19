@@ -1,24 +1,47 @@
-== PerfExplorer - User's Manual
+[[PerfExplorerDoc]]
+= PerfExplorer - User's Manual
 
+:leveloffset: +1
 include::ch01.adoc[]
+:leveloffset: -1
 
+:leveloffset: +1
 include::ch02.adoc[]
+:leveloffset: -1
 
+:leveloffset: +1
 include::ch03.adoc[]
+:leveloffset: -1
 
+:leveloffset: +1
 include::ch05.adoc[]
+:leveloffset: -1
 
+:leveloffset: +1
 include::ch06.adoc[]
+:leveloffset: -1
 
+:leveloffset: +1
 include::ch07.adoc[]
+:leveloffset: -1
 
+:leveloffset: +1
 include::ch12.adoc[]
+:leveloffset: -1
 
+:leveloffset: +1
 include::ch08.adoc[]
+:leveloffset: -1
 
+:leveloffset: +1
 include::ch09.adoc[]
+:leveloffset: -1
 
+:leveloffset: +1
 include::ch10.adoc[]
+:leveloffset: -1
 
+:leveloffset: +1
 include::ch13.adoc[]
+:leveloffset: -1
 

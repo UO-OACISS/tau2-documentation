@@ -1,0 +1,23 @@
+extends: default
+
+title-page:
+  # --- TITLE BLOCK ---
+  # Position the title block near the top of the page.
+  title:
+    top: 15%
+    font-size: 24
+    font-weight: bold
+    align: center
+  
+  # The subtitle will naturally follow the title.
+  subtitle:
+    font-size: 18
+    align: center
+
+  # --- LOGO BLOCK ---
+  # Position the logo block further down the page, below the title.
+  logo:
+    image: src/modules/ROOT/assets/images/NewTauLogo.png
+    width: 3in  # Adjusted width slightly for better balance
+    top: 40%
+    align: center

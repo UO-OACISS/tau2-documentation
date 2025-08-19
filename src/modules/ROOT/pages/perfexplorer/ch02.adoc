@@ -1,4 +1,5 @@
-== Installation and Configuration
+[[InstallPerfExplorer]]
+= Installation and Configuration
 
-PerfExplorer uses TAUdb and PerfDMF databases so if you have not already you will need to install TAUdb, see link:#taudb.intro[???]. After installing and configuring TAU the perfexplorer executable should be available in your `[path to tau]/tau2/[arch]/bin` directory. You will need to run `perfexplorer_configure`, installed at the same location as perfexplorer, to set up your database for use with perfexplorer and to download additional 3rd party jar files perfexplorer requires. When prompted by `perfexplorer_configure` give the name of your PerfDMF or TAUdb database and press Y to agree to download the jar files.
+PerfExplorer uses TAUdb and PerfDMF databases so if you have not already you will need to install TAUdb, see <<taudb-intro>>. After installing and configuring TAU the perfexplorer executable should be available in your `[path to tau]/tau2/[arch]/bin` directory. You will need to run `perfexplorer_configure`, installed at the same location as perfexplorer, to set up your database for use with perfexplorer and to download additional 3rd party jar files perfexplorer requires. When prompted by `perfexplorer_configure` give the name of your PerfDMF or TAUdb database and press Y to agree to download the jar files.
 

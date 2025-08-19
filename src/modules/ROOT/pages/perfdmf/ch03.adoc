@@ -1,4 +1,5 @@
-== Database Schema
+[[taudb-schema]]
+= Database Schema
 
 The database schema in TAUdb is designed to flexibly and efficiently store multidimensional parallel performance data. There are 5 dimensions to the actual timer measurements, and 4 dimensions to the counter measurements
 
@@ -19,12 +20,12 @@ Counter dimensions
 . Phase of execution (i.e. iteration number, timestamp)
 . Dynamic timer context (i.e. parameter values)
 
-[[taudb.schema.sql]]
+[[taudb-schema-sql]]
 == SQL for TAUdb
-
 Below is the SQL schema definition for TAUdb.
 
-....
+[source]
+----
 /****************************/
 /* CREATE THE STATIC TABLES */
 /****************************/
@@ -474,7 +475,7 @@ INSERT INTO taudb_view (parent, name, conjoin)
    do not work correctly*/
 INSERT INTO taudb_view_parameter 
     (taudb_view, table_name, column_name, operator, value) 
-    VALUES (1, 'trial', 'total_threads', '>', '-1');
+	VALUES (1, 'trial', 'total_threads', '>', '-1');
 
 /* the application and experiment columns are not used in the 
    latest schema, but keeping them makes the code in 
@@ -583,6 +584,6 @@ CREATE OR REPLACE VIEW atomic_total_summary
 AS SELECT * FROM atomic_event_value WHERE thread = -2; 
  
 CREATE OR REPLACE VIEW atomic_mean_summary 
-AS SELECT * FROM atomic_event_value WHERE thread >= -1; 
-....
+AS SELECT * FROM atomic_event_value WHERE thread >= -1;
+----
 

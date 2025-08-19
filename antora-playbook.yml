@@ -1,12 +1,15 @@
 
 site:
   title: TAU Documentation
+  url: / 
 content:
   sources:
   - url: .
     branches: HEAD
     start_path: src
+  edit_url: false
 ui:
   bundle:
     url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/master/raw/build/ui-bundle.zip?job=bundle-stable
     snapshot: true
+  supplemental_files: ./supplemental_ui

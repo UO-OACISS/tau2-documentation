@@ -2,6 +2,7 @@
 name: tau-docs
 title: TAU Documentation
 version: '2.34.1'
+start_page: usersguide/usersguide.adoc
 latest: true
 nav:
 - modules/ROOT/nav.adoc

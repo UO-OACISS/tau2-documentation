@@ -1,14 +1,11 @@
-== Windows
+= Windows
 
 [[TAUonWin]]
 == TAU on Windows
-
 === Installation
-
 We provide a binary release build for Windows on the http://www.cs.uoregon.edu/research/tau/downloads.php[download page]. TAU can also be built form source using `Makefile.win32`.
 
 === Instrumenting an application with Visual Studio C/C++
-
 Here is a step by step guide for retrieving a standard profile from a threaded program.
 
 [arabic]
@@ -35,9 +32,9 @@ Here is a step by step guide for retrieving a standard profile from a threaded p
 To view these profiles in pararprof
 
 [[UsingMINGW]]
-=== Using MINGW with TAU
-
-....
+=== Using MINGW  with TAU
+[source]
+----
 Building TAU with the MinGW cross-compilers for 32- or 64-bit Windows
 
 Requirements:
@@ -57,5 +54,5 @@ Limitations:
 Instructions:
 
 See ./configure -help.
-....
+----
 

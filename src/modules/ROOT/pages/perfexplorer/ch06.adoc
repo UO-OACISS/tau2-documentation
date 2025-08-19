@@ -1,44 +1,49 @@
-== Correlation Analysis
+[[CorrelationAnalysis]]
+= Correlation Analysis
 
 Correlation analysis in PerfExplorer is used to explore relationships between events in a profile. Each event is pairwise plotted with the other events, and a correlation coefficient is calcuated for the relationship. When the events are highly positively correlated (coefficient of close to 1.0) or highly negatively correlated (coefficient close to -1.0), then the relationships will show up as linear groupings in the results. Clusters may also be apparent.
 
 [[DimensionReduction2]]
 == Dimension Reduction
-
 Often, many hundreds of events are instrumented when profile data is collected. Clustering works best with dimensions less than 10, so dimension reduction is often necessary to get meaningful results. Currently, there is only one type of dimension reduction available in PerfExplorer. To reduce dimensions, the user specifies a minimum exclusive percentage for an event to be considered "significant".
 
 To reduce dimensions, select the "Select Dimension Reduction" item under the "Analysis" main menu bar item. The following dialog will appear:
 
+[[perfexplorer.mainwindow.dimensionreduction1b]]
 .Selecting a dimension reduction method
-[#perfexplorer.mainwindow.dimensionreduction1b]
-image::/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/dimensionreduction1.png[/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/dimensionreduction1,width=192]
+image::dimensionreduction1.png[Selecting a dimension reduction method,width="2in",align="center"]
 
 Select "Over X Percent". The following dialog will appear:
 
+[[perfexplorer.mainwindow.dimensionreduction2b]]
 .Entering a minimum threshold for exclusive percentage
-[#perfexplorer.mainwindow.dimensionreduction2b]
-image::/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/dimensionreduction2.png[/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/dimensionreduction2,width=192]
+image::dimensionreduction2.png[Entering a minimum threshold for exclusive percentage,width="2in",align="center"]
 
 Enter a value, for example "1".
 
 [[PerformingCorrelationAnalysis]]
 == Performing Correlation Analysis
-
 To perform correlation analysis, you first need to select a metric. To select a metric, navigate through the tree of applications, experiments and trials, and expand the trial of interest, showing the available metrics, as shown in the figure below:
 
-.Selecting a Metric to Cluster
-[#perfexplorer.mainwindow.correlation]
-image::/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/clusteringselection.png[/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/clusteringselection,width=576]
+[[perfexplorer.mainwindow.correlation]]
+.Selecting a
+	Metric to Cluster
+image::clusteringselection.png[Selecting a
+	Metric to Cluster,width="6in",align="center"]
 
 After selecting the metric of interest, select the "Do Correlation Analysis" item under the "Analysis" main menu bar item. A confirmation dialog will appear, and you can either confirm the correlation request or cancel it. After confirming the correlation, the analysis will begin. When the analysis results are available, you can view them in the "Correlation Results" tab.
 
-.Correlation Results
-[#perfexplorer.correlation.results]
-image::/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/correlationresults.png[/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/correlationresults,width=576]
+[[perfexplorer.correlation.results]]
+.Correlation
+	Results
+image::correlationresults.png[Correlation
+	Results,width="6in",align="center"]
 
 There are a number of images in the "Correlation Results" window. Each thumbnail represents a pairwise correlation plot of two events. Clicking on a thumbnail image in the main window will bring up the images, as shown below:
 
-.Correlation Example
-[#perfexplorer.correlation.example]
-image::/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/correlationexample.png[/home/wspear/Documents/tau2-documentation/src/modules/ROOT/assets/images/correlationexample,width=576]
+[[perfexplorer.correlation.example]]
+.Correlation
+	Example
+image::correlationexample.png[Correlation
+	Example,width="6in",align="center"]
 

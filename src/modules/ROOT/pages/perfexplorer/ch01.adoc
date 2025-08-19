@@ -1,4 +1,5 @@
-== Introduction
+[[Introduction]]
+= Introduction
 
 PerfExplorer is a framework for parallel performance data mining and knowledge discovery. The framework architecture enables the development and integration of data mining operations that will be applied to large-scale parallel performance profiles.
 

@@ -1,0 +1,11 @@
+
+/*
+ * Force browsers to ignore print-specific image widths (e.g., width="4.45in")
+ * and instead use the image's natural size, scaling it down if needed.
+ */
+img[width*="in"], 
+img[width*="pt"] {
+  width: auto !important;
+  height: auto !important;
+  max-width: 100%; /* Ensures the image never overflows its container */
+}

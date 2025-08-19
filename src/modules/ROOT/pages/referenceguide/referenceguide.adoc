@@ -1,42 +1,59 @@
+:doctype: book
+:imagesdir: ../../assets/images
+
+[[TauReferenceGuide]]
 = TAU Reference Guide
 
-:doctype: book
-:toc:
-:toc-title: Table of Contents
-:toclevels: 3
-:sectnums:
-:source-highlighter: rouge
-:icons: font
-:title-logo-image: image:NewTauLogo.png[TAU Logo,150]
-include::../../partials/_attributes.adoc[]
+include::../../partials/_header.adoc[]
 
-[preamble]
---
-include::../../partials/_legalnotice.adoc[]
---
+:toc: macro
+toc::[]
 
-
+:leveloffset: +1
 include::../newguide/introduction.adoc[]
+:leveloffset: -1
 
+:leveloffset: +1
 include::instrumentation.adoc[]
+:leveloffset: -1
 
+:leveloffset: +1
 include::tracing.adoc[]
+:leveloffset: -1
 
+:leveloffset: +1
 include::../memorytracking/tutorial.adoc[]
+:leveloffset: -1
 
+:leveloffset: +1
 include::../taujava/taujava.adoc[]
+:leveloffset: -1
 
+:leveloffset: +1
 include::../taueclipse/eclipseplugin.adoc[]
+:leveloffset: -1
 
+:leveloffset: +1
 include::../taudocs/tauutils.adoc[]
+:leveloffset: -1
 
+:leveloffset: +1
 include::../perfdmf/book.adoc[]
+:leveloffset: -1
 
+:leveloffset: +1
 include::../newguide/windows.adoc[]
+:leveloffset: -1
 
+:leveloffset: +1
 include::../APIs/tauapis.adoc[]
+:leveloffset: -1
 
+:leveloffset: +1
 include::../APIs/taumapping.adoc[]
+:leveloffset: -1
 
+:leveloffset: +1
 include::../newguide/environment.adoc[]
+:leveloffset: -1
 

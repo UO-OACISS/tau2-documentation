@@ -1,0 +1,22 @@
+// src/modules/ROOT/partials/_header.adoc
+// This is the shared header for all master documents.
+
+// The document title is passed in as the {doc-title} attribute
+//= {doc-title}
+
+// Common document attributes
+:doctype: book
+:toc: left
+:toc-title: Table of Contents
+:toclevels: 3
+:sectnums:
+:sectlinks:
+:sectanchors:
+:source-highlighter: rouge
+:icons: font
+:title-logo-image: image:NewTauLogo.png[TAU Logo,150]
+
+// Include the other partials
+include::_attributes.adoc[]
+
+include::_legalnotice.adoc[]

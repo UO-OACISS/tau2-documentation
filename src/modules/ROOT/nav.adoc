@@ -1,4 +1,0 @@
-
-* xref:usersguide/usersguide.adoc[User Guide]
-* xref:installguide/installguide.adoc[Installation Guide]
-* xref:referenceguide/referenceguide.adoc[Reference Guide]

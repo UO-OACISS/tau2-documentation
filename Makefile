@@ -1,4 +1,3 @@
-
 USER_GUIDE_SRC      := src/modules/ROOT/pages/usersguide/usersguide.adoc
 INSTALL_GUIDE_SRC   := src/modules/ROOT/pages/installguide/installguide.adoc
 REFERENCE_GUIDE_SRC := src/modules/ROOT/pages/referenceguide/referenceguide.adoc
@@ -14,10 +13,19 @@ INSTALL_GUIDE_PDF   := $(PDF_DIR)/install-guide.pdf
 REFERENCE_GUIDE_PDF := $(PDF_DIR)/reference-guide.pdf
 ANTORA_PLAYBOOK := antora-playbook.yml
 
+# Common flags for all Asciidoctor commands
 ASCIIDOCTOR_FLAGS = -a imagesdir=../../assets/images
-ASCIIDOCTOR_PDF_FLAGS = $(ASCIIDOCTOR_FLAGS) -a pdf-stylesdir=themes -a pdf-style=tau
+
+# Correct PDF flags that enable the title page, toc, and custom theme
+ASCIIDOCTOR_PDF_FLAGS = $(ASCIIDOCTOR_FLAGS) \
+                        -a pdf-theme=./pdf-theme.yml \
+                        -a title-page \
+                        -a toc 
+#			-a title-logo-image=$(CURDIR)/src/modules/ROOT/assets/images/NewTauLogo.png
 
 .PHONY: all html-single pdf html-chunked clean
+
+NAV_ADOC = src/modules/ROOT/nav.adoc
 
 all: html-single pdf html-chunked
 
@@ -27,9 +35,13 @@ html-single: $(USER_GUIDE_HTML) $(INSTALL_GUIDE_HTML) $(REFERENCE_GUIDE_HTML)
 pdf: $(USER_GUIDE_PDF) $(INSTALL_GUIDE_PDF) $(REFERENCE_GUIDE_PDF)
 	@echo "PDF generation complete."
 
-html-chunked:
+html-chunked: $(NAV_ADOC)
 	@mkdir -p $(CHUNKED_DIR)
 	npx antora --stacktrace --to-dir $(CHUNKED_DIR) $(ANTORA_PLAYBOOK)
+
+$(NAV_ADOC): $(USER_GUIDE_SRC) $(INSTALL_GUIDE_SRC) $(REFERENCE_GUIDE_SRC) generate_nav.py
+	@echo "--- Regenerating navigation file from AsciiDoc sources ---"
+	@python3 generate_nav.py
 
 $(USER_GUIDE_HTML): $(USER_GUIDE_SRC)
 	@mkdir -p $(HTML_SINGLE_DIR)
@@ -56,4 +68,4 @@ $(REFERENCE_GUIDE_PDF): $(REFERENCE_GUIDE_SRC)
 	asciidoctor-pdf $(ASCIIDOCTOR_PDF_FLAGS) -D $(PDF_DIR) -o $(notdir $@) $<
 
 clean:
-	@rm -rf $(BUILD_DIR) src Makefile antora-playbook.yml
+	@rm -rf $(BUILD_DIR) $(NAV_ADOC)
