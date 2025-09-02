@@ -1,5 +1,5 @@
 [[tauinstrumentation]]
-== Tau Instrumentation
+== TAU Instrumentation
 
 === Types of Instrumenation
 
@@ -112,7 +112,7 @@ To specify a selective instrumentation file, create a text file and use the foll
 
 ----
 Here is a example file:
-#Tell tau to not profile these functions
+#Tell TAU to not profile these functions
 BEGIN_EXCLUDE_LIST
 
 void quicksort(int *, int, int)

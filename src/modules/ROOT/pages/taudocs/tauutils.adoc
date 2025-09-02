@@ -55,7 +55,7 @@ This program is generated when TAU is configured with the -vtf=<vtf_dir> option.
 `-nomessage` Suppresses printing of message information in the trace. `-v` Verbose mode sends trace event descriptions to the standard output as they are converted. `-a` Print the vtf file output in the human-readable VTF3 ASCII format `-fa` Print the vtf file in the simplified human-readable FAST ASCII VTF3 format
 
 .Examples
-The program must be run with the tau trace, tau event and vtf output files specified in the command line in that order. Any additional arguments follow. The following will produce a VTF, app.vpt, from the TAU trace and event files merged.trc and tau.edf trace file: ---- tau2vtf merged.trc tau.edf app.vpt The following will convert merged.trc and tau.edf to a gzipped FAST ASCII vampir tracefile app.vpt.gz, with message events omitted: ---- The following will convert merged.trc and tau.edf to a gzipped FAST ASCII vampir tracefile app.vpt.gz, with message events omitted: ---- tau2vtf merged.trc tau.edf app.vpt.gz -nomessage -fa ----
+The program must be run with the TAU trace, TAU event and vtf output files specified in the command line in that order. Any additional arguments follow. The following will produce a VTF, app.vpt, from the TAU trace and event files merged.trc and tau.edf trace file: ---- tau2vtf merged.trc tau.edf app.vpt The following will convert merged.trc and tau.edf to a gzipped FAST ASCII vampir tracefile app.vpt.gz, with message events omitted: ---- The following will convert merged.trc and tau.edf to a gzipped FAST ASCII vampir tracefile app.vpt.gz, with message events omitted: ---- tau2vtf merged.trc tau.edf app.vpt.gz -nomessage -fa ----
 
 .See Also
 <<vtf2profile>> , <<trace2profile>> , <<tau_merge>> , <<tau_convert>>
@@ -77,7 +77,7 @@ This program is generated when TAU is configured with the -TRACE option. The tra
 `-d` Output profile files to the specified 'directory' rather than the current directory. `-s` Output a profile snapshot showing the state of the profile data accumulated from the trace every 'snapshot_interval' time units. The snapshot profiles are placed sequentially in directories labled 'snapshot_n' where 'n' is an integer ranging from 0 to to the total number of snapshots -1.
 
 .Examples
-The program must be run with the tau trace and tau event files specified in the command line in that order. Any additional arguments follow. The following will produce a profile file array, from the TAU trace and event files merged.trc and tau.edf trace file: ---- trace2profile merged.trc tau.edf The following will convert merged.trc and tau.edf to a series of profiles one directory higher. It will also produce a profile snapshot every 250,000 time units: ---- The following will convert merged.trc and tau.edf to a series of profiles one directory higher. It will also produce a profile snapshot every 250,000 time units: ---- trace2profile merged.trc tau.edf -d ./.. -s 250000 ----
+The program must be run with the TAU trace and tau event files specified in the command line in that order. Any additional arguments follow. The following will produce a profile file array, from the TAU trace and event files merged.trc and tau.edf trace file: ---- trace2profile merged.trc tau.edf The following will convert merged.trc and tau.edf to a series of profiles one directory higher. It will also produce a profile snapshot every 250,000 time units: ---- The following will convert merged.trc and tau.edf to a series of profiles one directory higher. It will also produce a profile snapshot every 250,000 time units: ---- trace2profile merged.trc tau.edf -d ./.. -s 250000 ----
 
 .See Also
 <<vtf2profile>> , <<tau2vtf>> , <<tau2otf>> , <<tau_merge>> , <<tau_convert>>
@@ -99,7 +99,7 @@ This program is generated when TAU is configured with the -epilog=<epilog_dir> o
 `-nomessage` Suppresses printing of message information in the trace. `-v` Verbose mode sends trace event descriptions to the standard output as they are converted.
 
 .Examples
-The program must be run with the tau trace, tau event and elg output files specified in the command line in that order. Any additional arguments follow. The following would convert merged.trc and tau.edf to the Epilog tracefile app.elg, with message events omitted: ---- ./tau2vtf merged.trc tau.edf app.elg -nomessage ----
+The program must be run with the TAU trace, TAU event and elg output files specified in the command line in that order. Any additional arguments follow. The following would convert merged.trc and tau.edf to the Epilog tracefile app.elg, with message events omitted: ---- ./tau2vtf merged.trc tau.edf app.elg -nomessage ----
 
 .See Also
 <<tau_merge>>
@@ -422,7 +422,7 @@ There is a few examples: ---- bash : ./tau_validate --html x86_64 &> results.htm
 [[tauex]]
 === tauex
 
-Allows you to choose a tau configuration at runtime
+Allows you to choose a TAU configuration at runtime
 
 [source, subs="+quotes"]
 ----
@@ -606,7 +606,7 @@ Defaults if unspecified: -T MPI. MPI is assumed unless SERIAL is specified CUDA 
 [[tau_timecorrect]]
 === tau_timecorrect
 
-Corrects and reorders the records of tau trace files.
+Corrects and reorders the records of TAU trace files.
 
 [source, subs="+quotes"]
 ----
@@ -614,7 +614,7 @@ Corrects and reorders the records of tau trace files.
 ----
 
 .Description
-This program takes in tau trace files, reorders and corrects the times of these records and then outputs the records to new trace files. The time correction algorithm uses a logical clock algorithm with amortization. This is done by adjusting the times of events such that the product of an effect happens after the cause of that effect.
+This program takes in TAU trace files, reorders and corrects the times of these records and then outputs the records to new trace files. The time correction algorithm uses a logical clock algorithm with amortization. This is done by adjusting the times of events such that the product of an effect happens after the cause of that effect.
 
 .Options
 `trace input file` `EDF input file` `trace output file` `EDF output file`
@@ -1143,7 +1143,7 @@ Instruments and executes binaries to generate performance data. (DyninstAPI base
 [[tau_rewrite]]
 === tau_rewrite
 
-Rewrites binaries using Maqao if Tau is configured using PDT 3.17+ at the routine level.
+Rewrites binaries using Maqao if TAU is configured using PDT 3.17+ at the routine level.
           If it doesn't find the Maqao package from PDT 3.17, it reverts to tau_run (DyninstAPI based instrumentor).
 
 .Options
@@ -1175,7 +1175,7 @@ Defaults if unspecified: -T MPI MPI is assumed unless SERIAL is specified
 Launches PySpark applications with TAU instrumentation
 
 .Notes
-Tau can profile PySpark applications using Spark 2.2 or later and Python 2.7 or later with the numpy package installed. TAU must be configured with the -pythoninc and -pythonlib options specifying an appropriate Python installation. The SPARK_HOME environment variable must be set to the location of your Spark installation. Replace spark-submit in your normal Spark application invocation with tau_spark-submit. Options for tau_spark-submit can be set using the TAU_SPARK_PYTHON_ARGS environment variable. A PySpark application profiled using tau_spark-submit will generate one profile file per task executed.
+TAU can profile PySpark applications using Spark 2.2 or later and Python 2.7 or later with the numpy package installed. TAU must be configured with the -pythoninc and -pythonlib options specifying an appropriate Python installation. The SPARK_HOME environment variable must be set to the location of your Spark installation. Replace spark-submit in your normal Spark application invocation with tau_spark-submit. Options for tau_spark-submit can be set using the TAU_SPARK_PYTHON_ARGS environment variable. A PySpark application profiled using tau_spark-submit will generate one profile file per task executed.
 
 .Example
 ---- export TAU_SPARK_PYTHON_ARGS="-T serial,python" ---- ---- tau_spark-submit --master local[4] ./als.py ----

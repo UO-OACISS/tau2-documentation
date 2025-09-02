@@ -207,7 +207,7 @@ Report performance data for only OpenMP constructs and not Regions. By default, 
 
 * `-pdtarch=<architecture>`
 +
-Specifies the architecture used to build pdt, default the tau architecture.
+Specifies the architecture used to build pdt, default the TAU architecture.
 
 * `-papithreads`
 +
@@ -243,7 +243,7 @@ Specifies the location of the Vampir Trace package. With this option TAU will ge
 
 * `-scorep=<directory>` or `-scorep=<download>`
 +
-Specify location of an existing Score-P package or download and configure a new install automatically. Set the enviroment varible SCOREP_PROFILING_FORMAT to TAU_SNAPHOT so that Score-P will output Tau Snapsot profiles.
+Specify location of an existing Score-P package or download and configure a new install automatically. Set the enviroment varible SCOREP_PROFILING_FORMAT to TAU_SNAPHOT so that Score-P will output TAU Snapsot profiles.
 
 * `-shmeminc=<directory>`
 +
@@ -356,7 +356,7 @@ Path to the MRnet libraries.On some cluster systems the MRnet libraries need to 
 
 * `-scorep=<scorep subsystem>`
 +
-Path to the Score-P measurement system. Set the enviroment varible SCOREP_PROFILING_FORMAT to TAU_SNAPHOT so that Score-P will output Tau Snapsot profiles.
+Path to the Score-P measurement system. Set the enviroment varible SCOREP_PROFILING_FORMAT to TAU_SNAPHOT so that Score-P will output TAU Snapsot profiles.
 
 * `-help`
 +

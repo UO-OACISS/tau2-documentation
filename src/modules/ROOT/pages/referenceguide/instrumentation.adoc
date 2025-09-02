@@ -429,11 +429,11 @@ To configure TAU with PerfLib use the following arguments:
              -perfinc=[path_to_perflib inc directory]
              -perflibrary=[argument send to the linker if different than default]
 
-    After tau is build a new Makefile will be generated with *-perflib-* in its
+    After TAU is built a new Makefile will be generated with *-perflib-* in its
     name, use this Makefile when profiling applications with perflib.
 ----
 
-After tau is build a new Makefile will be generated with *-perflib-* in its name, use this Makefile when profiling applications with perflib.
+After TAU is built a new Makefile will be generated with *-perflib-* in its name, use this Makefile when profiling applications with perflib.
 
 After configuration and installation, toggle these three environment variables before running the application:
 
@@ -445,7 +445,7 @@ After configuration and installation, toggle these three environment variables b
 %> export PERF_DATA_DIRECTORY=<directory>
 ----
 
-We also provide a perf2tau conversion utilities to convert the remaining perflib profiles to regular tau profiles. To use perf2tau set the environment variable `perf_data_directory` to the type of the profiling to be converted (the directory where the data is store will be called something like perf_data.[type]/). Or you may execute perf2tau with the type as an argument:
+We also provide a perf2tau conversion utilities to convert the remaining perflib profiles to regular TAU profiles. To use perf2tau set the environment variable `perf_data_directory` to the type of the profiling to be converted (the directory where the data is store will be called something like perf_data.[type]/). Or you may execute perf2tau with the type as an argument:
 
 ----
 %> perf2tau [type]

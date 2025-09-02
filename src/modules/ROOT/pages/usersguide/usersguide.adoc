@@ -14,7 +14,7 @@ This guide is organized into different sections. Readers wanting to get started 
 TAU can be found on the web at: link:http://tau.uoregon.edu[http://tau.uoregon.edu]
 
 [[tauusermanual]]
-== Tau User Guide
+== TAU User Guide
 
 include::../taucompiler/taucompiler.adoc[]
 include::../newguide/profiling.adoc[]

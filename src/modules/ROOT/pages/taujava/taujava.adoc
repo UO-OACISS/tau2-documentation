@@ -1,12 +1,12 @@
 [[eclipsetaujava]]
-== Eclipse Tau Java System
+== Eclipse TAU Java System
 
 [[installation]]
 === Installation
 
 Copy the plugins directory in the tau2/tools/src/taujava directory to the location of your eclipse installation. You may have to restart eclipse if it is running when this is done.
 
-In eclipse go to the Window menu, select Preferences and go to the TauJava Preferences section. Enter the location of the lib directory in the tau installation for your architecture in the Tau Library Directory field. Other options may also be selected at this time.
+In eclipse go to the Window menu, select Preferences and go to the TauJava Preferences section. Enter the location of the lib directory in the tau installation for your architecture in the TAU Library Directory field. Other options may also be selected at this time.
 
 .TAUJava Options Screen
 image::taujavopt.png[TAUJava Options Screen]
@@ -14,7 +14,7 @@ image::taujavopt.png[TAUJava Options Screen]
 [[instrumentation]]
 === Instrumentation
 
-Java programs can be instrumented at the level of full Java projects, packages or individual Java files. From within the Java view simply right click on the element in the package explorer that you wish to instrument select the Tau pop up menu and click on Instrument Project, Package or Java respectively.
+Java programs can be instrumented at the level of full Java projects, packages or individual Java files. From within the Java view simply right click on the element in the package explorer that you wish to instrument select the TAU pop up menu and click on Instrument Project, Package or Java respectively.
 
 .TAUJava Project Instrumentation
 image::taujavpopproj.png[TAUJava Project Instrumentation]
@@ -33,7 +33,7 @@ Uninstrumenting a Java project, package or file works just like instrumenting. J
 
 To automatically analyze your instrumented project on a Unix-based system TAU must first be configured with the -JDK option, and any other options you want applied to your trace output. On windows the type of analysis to be conducted, Profile, Call path or Trace, should be selected from the Window, Preferences TauJava Preferences menu.
 
-Once that has been accomplished, right click on the Java file containing the main method you want to run, go to the TAU menu and click on Run Tau-Instrumented Java. The program will run and, by default, the profile and/or trace files will be placed in a timestamped directory, inside a directory indicating the name of the file that was run, in the TAU_Output directory in the home directory of the Java project.
+Once that has been accomplished, right click on the Java file containing the main method you want to run, go to the TAU menu and click on Run TAU-Instrumented Java. The program will run and, by default, the profile and/or trace files will be placed in a timestamped directory, inside a directory indicating the name of the file that was run, in the TAU_Output directory in the home directory of the Java project.
 
 .TAUJava Running
 image::taujavpoprun.png[TAUJava Running]
