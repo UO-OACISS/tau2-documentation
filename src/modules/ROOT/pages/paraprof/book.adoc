@@ -1,43 +1,22 @@
-[[ParaProfDoc]]
-= ParaProf - User's Manual
+[[paraprofdoc]]
+== ParaProf - User's Manual
 
-:leveloffset: +1
 include::intro.adoc[]
-:leveloffset: -1
 
-:leveloffset: +1
 include::views.adoc[]
-:leveloffset: -1
 
-:leveloffset: +1
 include::management.adoc[]
-:leveloffset: -1
 
-:leveloffset: +1
 include::3d.adoc[]
-:leveloffset: -1
 
-:leveloffset: +1
 include::thread.adoc[]
-:leveloffset: -1
 
-:leveloffset: +1
 include::function.adoc[]
-:leveloffset: -1
 
-:leveloffset: +1
 include::phase.adoc[]
-:leveloffset: -1
 
-:leveloffset: +1
 include::comparison.adoc[]
-:leveloffset: -1
 
-:leveloffset: +1
 include::misc.adoc[]
-:leveloffset: -1
 
-:leveloffset: +1
 include::preferences.adoc[]
-:leveloffset: -1
-

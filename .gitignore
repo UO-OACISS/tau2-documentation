@@ -1,2 +1,5 @@
 build/
 src/modules/ROOT/nav.adoc
+# Ignore generated Antora alias files
+src/modules/ROOT/pages/referenceguide/taudb-alias.adoc
+src/modules/ROOT/pages/referenceguide/installation-alias.adoc

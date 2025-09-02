@@ -1,56 +1,30 @@
-:doctype: book
-:imagesdir: ../../assets/images
-
-[[TauUsersGuide]]
+[[tauusersguide]]
 = TAU User Guide
+:doctype: book
 
 include::../../partials/_header.adoc[]
 
-:toc: macro
-toc::[]
-
+[preface]
 == TAU preface
+
 TAU Performance System is a portable profiling and tracing toolkit for performance analysis of parallel programs written in Fortran, C, C++, Java, and Python. TAU (Tuning and Analysis Utilities) is capable of gathering performance information through instrumentation of functions, methods, basic blocks, and statements. The TAU API also provides selection of profiling groups for organizing and controlling instrumentation. Calls to the TAU API are made by probes inserted into the execution of the application via source transformation, compiler directives or by library interposition.
 
-This guide is organized into different sections. Readers wanting to get started right way can skip to the <<ApplicationScenario,Common Profile Requests>> section for step-by-step instructions for obtaining difference kinds of performance data. Or browse the <<StartersGuide,starters guide>> for a quick reference to common TAU commands and variables.
+This guide is organized into different sections. Readers wanting to get started right way can skip to the <<applicationscenario>> section for step-by-step instructions for obtaining difference kinds of performance data. Or browse the <<startersguide>> for a quick reference to common TAU commands and variables.
 
-TAU can be found on the web at: http://tau.uoregon.edu[http://tau.uoregon.edu]
+TAU can be found on the web at: link:http://tau.uoregon.edu[http://tau.uoregon.edu]
 
-[[TAUUSERMANUAL]]
+[[tauusermanual]]
 == Tau User Guide
-:leveloffset: +1
+
 include::../taucompiler/taucompiler.adoc[]
-:leveloffset: -1
-
-:leveloffset: +1
 include::../newguide/profiling.adoc[]
-:leveloffset: -1
-
-:leveloffset: +1
 include::../newguide/tracing.adoc[]
-:leveloffset: -1
-
-:leveloffset: +1
 include::anaylsis.adoc[]
-:leveloffset: -1
-
-:leveloffset: +1
 include::startersguide.adoc[]
-:leveloffset: -1
-
-:leveloffset: +1
 include::../scenario/scenario.adoc[]
-:leveloffset: -1
 
-:leveloffset: +1
 include::../paraprof/book.adoc[]
-:leveloffset: -1
 
-:leveloffset: +1
 include::../perfexplorer/perfexplorer.adoc[]
-:leveloffset: -1
 
-:leveloffset: +1
 include::../perfdmf/book.adoc[]
-:leveloffset: -1
-

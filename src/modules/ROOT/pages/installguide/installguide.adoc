@@ -1,15 +1,7 @@
-:doctype: book
-:imagesdir: ../../assets/images
-
-[[TauInstallGuide]]
+[[tauinstallguide]]
 = TAU Install Guide
+:doctype: book
 
 include::../../partials/_header.adoc[]
 
-:toc: macro
-toc::[]
-
-:leveloffset: +1
 include::../newguide/introduction.adoc[]
-:leveloffset: -1
-

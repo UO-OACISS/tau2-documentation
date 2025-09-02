@@ -20,7 +20,9 @@ ASCIIDOCTOR_FLAGS = -a imagesdir=../../assets/images
 ASCIIDOCTOR_PDF_FLAGS = $(ASCIIDOCTOR_FLAGS) \
                         -a pdf-theme=./pdf-theme.yml \
                         -a title-page \
-                        -a toc 
+                        -a toc \
+			-a toclevels=3 \
+			 -a list-of-figures=true -a list-of-tables=true
 #			-a title-logo-image=$(CURDIR)/src/modules/ROOT/assets/images/NewTauLogo.png
 
 .PHONY: all html-single pdf html-chunked clean

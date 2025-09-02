@@ -1,12 +1,10 @@
-= Untitled
-
-*TAU Profiles (profiles)* - Output from the TAU measurement library, these files generally take the form of `profile.X.X.X`, one for each node/context/thread combination. When multiple counters are used, each metric is located in a directory prefixed with "MULTI__". To launch ParaProf with all the metrics, simply launch it from the root of the MULTI__ directories.
+*TAU Profiles (profiles)* - Output from the TAU measurement library, these files generally take the form of `profile.X.X.X` , one for each node/context/thread combination. When multiple counters are used, each metric is located in a directory prefixed with "MULTI__". To launch ParaProf with all the metrics, simply launch it from the root of the MULTI__ directories.
 
 *ParaProf Packed Format (ppk)* - Export format supported by PerfDMF/ParaProf. Typically .ppk.
 
 *TAU Merged Profiles (snap)* - Merged and snapshot profile format supported by TAU. Typically tauprofile.xml.
 
-*TAU pprof (pprof)* - Dump Output from TAU's `pprof -d`. Provided for backward compatibility only.
+*TAU pprof (pprof)* - Dump Output from TAU's `pprof -d` . Provided for backward compatibility only.
 
 *DynaProf (dynaprof)* - Output From DynaProf's wallclock and papi probes.
 
@@ -35,4 +33,3 @@
 *IPM (ipm)* - Integrated Performance Monitoring format, from NERSC.
 
 *Google (google)* - Google Profiles.
-

@@ -1,69 +1,52 @@
-[[taudb-capi]]
-= TAUdb C API
+[[taudb.capi]]
+=== TAUdb C API
 
-[[taudb-capi-overview]]
-== TAUdb C API Overview
+[[taudb.capi.overview]]
+==== TAUdb C API Overview
+
 The C API for TAUdb is currently under development, but there is a beta version of the API available. The API provides the following capabilities:
 
 * Loading trials from the database
+
 * Inserting trials into the database
+
 * Parsing TAU profile files
 
+[[taudb.capi.structs]]
+==== TAUdb C Structures
 
-[[taudb-capi-structs]]
-== TAUdb C Structures
 The C structures are roughly organized as a tree, with a trial object at the root.
 
-* taudb_trial: 
-A top-level structure which contains the collections of all the performance data
-dimensions.
-* taudb_primary_metadata: 
-Name/value pairs which describe the properties of the trial.
-* taudb_secondary_metadata: 
-Name/value pairs which describe the properties of the trial. Unlike primary_metadata
-values, secondary_metadata objects can have complex value types. They are also associated
-with a measurement context - a thread of execution, a timer, a timestamp, an iteration,
-etc.
-* taudb_thread: 
-A structure which represents a thread of execution in the parallel
-measurement.
-* taudb_time_range: 
-A structure which holds a time-range value of beginning and ending iteration
-numbers or timestamps.
-* taudb_metric: 
-A structure which represents a unit of measurement, such as TIME, FP_OPS,
-L1_DCM, etc.
-* taudb_timer: 
-A structure which represents a region of code. For example, a phase, a 
-function, a loop, a basic block, or even a line of code.
-* taudb_timer_parameter: 
-A structure which represents parameter values, when parameter based profiling
-is used.
-* taudb_timer_group: 
-A structure which represents a semantic grouping of timers, such as "I/O",
-"MPI", "OpenMP", etc.
-* taudb_timer_callpath: 
-A structure which represents a node in the dynamic callpath tree. Timer_callpaths
-with a null parent are either top level timers, or a timers in a flat
-profile.
-* taudb_timer_call_data: 
-A structure which represents a tuple between a thread of execution and a node
-on the timer callpath tree.
-* taudb_timer_value: 
-A structure which represents a tuple between a timer_call_data object and a
-metric. The timer_value contains the measurement of one metric for one timer on
-one thread of execution.
-* taudb_counter: 
-A structure which represents a counter in the profile. For example, 
-the number of bytes transferred on an MPI_Send() timer.
-* taudb_counter_value: 
-A structure which represents a counter measurement on one thread of
-execution.
+* *taudb_trial:* A top-level structure which contains the collections of all the performance data dimensions.
 
+* *taudb_primary_metadata:* Name/value pairs which describe the properties of the trial.
+
+* *taudb_secondary_metadata:* Name/value pairs which describe the properties of the trial. Unlike primary_metadata values, secondary_metadata objects can have complex value types. They are also associated with a measurement context - a thread of execution, a timer, a timestamp, an iteration, etc.
+
+* *taudb_thread:* A structure which represents a thread of execution in the parallel measurement.
+
+* *taudb_time_range:* A structure which holds a time-range value of beginning and ending iteration numbers or timestamps.
+
+* *taudb_metric:* A structure which represents a unit of measurement, such as TIME, FP_OPS, L1_DCM, etc.
+
+* *taudb_timer:* A structure which represents a region of code. For example, a phase, a function, a loop, a basic block, or even a line of code.
+
+* *taudb_timer_parameter:* A structure which represents parameter values, when parameter based profiling is used.
+
+* *taudb_timer_group:* A structure which represents a semantic grouping of timers, such as "I/O", "MPI", "OpenMP", etc.
+
+* *taudb_timer_callpath:* A structure which represents a node in the dynamic callpath tree. Timer_callpaths with a null parent are either top level timers, or a timers in a flat profile.
+
+* *taudb_timer_call_data:* A structure which represents a tuple between a thread of execution and a node on the timer callpath tree.
+
+* *taudb_timer_value:* A structure which represents a tuple between a timer_call_data object and a metric. The timer_value contains the measurement of one metric for one timer on one thread of execution.
+
+* *taudb_counter:* A structure which represents a counter in the profile. For example, the number of bytes transferred on an MPI_Send() timer.
+
+* *taudb_counter_value:* A structure which represents a counter measurement on one thread of execution.
 
 Below are the object definitions, from the TAUdb C header file.
 
-[source]
 ----
 #ifndef TAUDB_STRUCTS_H
 #define TAUDB_STRUCTS_H 1
@@ -430,9 +413,9 @@ typedef struct perfdmf_application {
 #endif /* TAUDB_STRUCTS_H */
 ----
 
-[[taudb-capi-api]]
-== TAUdb C API
-[source]
+[[taudb.capi.api]]
+==== TAUdb C API
+
 ----
 #ifndef TAUDB_API_H
 #define TAUDB_API_H 1
@@ -778,11 +761,12 @@ extern TAUDB_SECONDARY_METADATA*
 #endif /* TAUDB_API_H */
 ----
 
-[[taudb-capi-examples]]
-== TAUdb C API Examples
-[[taudb-capi-examples-insert]]
-=== Creating a trial and inserting into the database
-[source]
+[[taudb.capi.examples]]
+==== TAUdb C API Examples
+
+[[taudb.capi.examples.insert]]
+===== Creating a trial and inserting into the database
+
 ----
 #include "taudb_api.h"
 #include <stdio.h>
@@ -917,9 +901,9 @@ int main (int argc, char** argv) {
 }
 ----
 
-[[taudb-capi-examples-query]]
-=== Querying a trial from the database
-[source]
+[[taudb.capi.examples.query]]
+===== Querying a trial from the database
+
 ----
 #include "taudb_api.h"
 #include <stdio.h>
@@ -990,4 +974,3 @@ int main (int argc, char** argv) {
    return 0;
 }
 ----
-

@@ -1,5 +1,5 @@
-[[Views]]
-= Views
+[[views]]
+=== Views
 
 Often times, data is loaded into the database with multiple parametric cross-sections. For example, the charts available in PerfExplorer are primarily designed for scalability analysis, however data might be loaded as a parametric study. For example, in the following example, the data has been loaded with three problem sizes, MIN, HALF and FULL.
 
@@ -11,8 +11,9 @@ image::parametricdata.png[Potential
 
 In order to examine this data in a scalability study, it is necessary to reorganize the data. However, it is not necessary to re-load the data. Using views in PerfExplorer, you can re-organize the data based on values in the database.
 
-[[CreatingViews]]
-== Creating Views
+[[creatingviews]]
+==== Creating Views
+
 To create a view, select the "Create New View" item under the "Views" main menu item. The first step is to select the table which will form the basis of the view. The three possible values are Application, Experiment and Trial:
 
 [[perfexplorer.views.viewslevel]]
@@ -57,8 +58,9 @@ After creating the view, you will need to exit PerfExplorer and re-start it to s
 image::completedview.png[The completed
 	view,width="6in",align="center"]
 
-[[CreatingSubviews]]
-== Creating Subviews
+[[creatingsubviews]]
+==== Creating Subviews
+
 In order to create sub-views, you first need to select the "Create New Sub-View" item from the "Views" main menu item. The first dialog box will prompt you to select the view (or sub-view) to base the new sub-view on:
 
 [[perfexplorer.views.subview]]
@@ -74,4 +76,3 @@ After selecting the base view or sub-view, the options for creating the new sub-
 	sub-views
 image::completedsubview.png[Completed
 	sub-views,width="6in",align="center"]
-

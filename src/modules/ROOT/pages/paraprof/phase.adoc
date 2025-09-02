@@ -1,16 +1,17 @@
-[[paraprof-phasedisplays]]
-= Phase Based Displays
+[[paraprof.phasedisplays]]
+=== Phase Based Displays
 
 When a profile contains phase data, ParaProf will automatically run in phase mode. Most displays will show data for a particular phase. This phase will be displayed in teh top left corner in the meta data panel.
 
-[[paraprof-phase-mainwindow]]
-== Using Phase Based Displays
-The initial window will default to top level phase, usually main
+[[paraprof.phase.mainwindow]]
+==== Using Phase Based Displays
+
+The initial window will default to top level phase, usually _main_
 
 .Initial Phase Display
 image::phase_main.png[Initial Phase Display,width="4.45in",align="center"]
 
-To access other phases, either right click on the phase and select, "Open Profile for this Phase", or go to the Phase Ledger and select it there. and select it there.
+To access other phases, either right click on the phase and select, "Open Profile for this Phase", or go to the _Phase Ledger_ and select it there.
 
 .Phase Ledger
 image::phase_ledger.png[Phase Ledger,width="2.10in",align="center"]
@@ -21,4 +22,3 @@ ParaProf can also display a particular function's value across all of the phases
 image::phase_function.png[Function Data over Phases,width="3.61in",align="center"]
 
 Because Phase information is implemented as callpaths, many of the callpath displays will show phase data as well. For example, the Call Path Text Window is useful for showing how functions behave across phases.
-

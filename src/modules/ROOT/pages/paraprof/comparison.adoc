@@ -1,10 +1,11 @@
-[[paraprof-comparison]]
-= Comparative Analysis
+[[paraprof.comparison]]
+=== Comparative Analysis
 
 ParaProf can perform cross-thread and cross-trial anaylsis. In this way, you can compare two or more trials and/or threads in a single display.
 
-[[paraprof-comparison-using]]
-== Using Comparitive Analysis
+[[paraprof.comparison.using]]
+==== Using Comparitive Analysis
+
 Comparative analysis in ParaProf is based on individual threads of execution. There is a maximum of one Comparison window for a given ParaProf session. To add threads to the window, right click on them and select "Add Thread to Comparison Window". The Comparison Window will pop up with the thread selected. Note that "mean" and "std. dev." are considered threads for this any most other purposes.
 
 .Comparison Window (initial)
@@ -17,4 +18,3 @@ image::comparison2.png[Comparison Window (2 trials),width="3.914in",align="cente
 
 .Comparison Window (3 threads)
 image::comparison3.png[Comparison Window (3 threads),width="3.914in",align="center"]
-

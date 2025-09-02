@@ -1,10 +1,11 @@
-[[CorrelationAnalysis]]
-= Correlation Analysis
+[[correlationanalysis]]
+=== Correlation Analysis
 
 Correlation analysis in PerfExplorer is used to explore relationships between events in a profile. Each event is pairwise plotted with the other events, and a correlation coefficient is calcuated for the relationship. When the events are highly positively correlated (coefficient of close to 1.0) or highly negatively correlated (coefficient close to -1.0), then the relationships will show up as linear groupings in the results. Clusters may also be apparent.
 
-[[DimensionReduction2]]
-== Dimension Reduction
+[[dimensionreduction2]]
+==== Dimension Reduction
+
 Often, many hundreds of events are instrumented when profile data is collected. Clustering works best with dimensions less than 10, so dimension reduction is often necessary to get meaningful results. Currently, there is only one type of dimension reduction available in PerfExplorer. To reduce dimensions, the user specifies a minimum exclusive percentage for an event to be considered "significant".
 
 To reduce dimensions, select the "Select Dimension Reduction" item under the "Analysis" main menu bar item. The following dialog will appear:
@@ -21,8 +22,9 @@ image::dimensionreduction2.png[Entering a minimum threshold for exclusive percen
 
 Enter a value, for example "1".
 
-[[PerformingCorrelationAnalysis]]
-== Performing Correlation Analysis
+[[performingcorrelationanalysis]]
+==== Performing Correlation Analysis
+
 To perform correlation analysis, you first need to select a metric. To select a metric, navigate through the tree of applications, experiments and trials, and expand the trial of interest, showing the available metrics, as shown in the figure below:
 
 [[perfexplorer.mainwindow.correlation]]
@@ -46,4 +48,3 @@ There are a number of images in the "Correlation Results" window. Each thumbnail
 	Example
 image::correlationexample.png[Correlation
 	Example,width="6in",align="center"]
-

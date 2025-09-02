@@ -1,9 +1,11 @@
-[[tauInstrumentation]]
-= Tau Instrumentation
+[[tauinstrumentation]]
+== Tau Instrumentation
 
-== Types of Instrumenation
+=== Types of Instrumenation
+
 TAU provides three methods to track the performance of your application. Library interposition using tau_exec, compiler directives or source transformation using PDT. Here is a table that lists the features/requirement for each method:
 
+.Different methods of instrumenting applications
 .Different methods of instrumenting applications
 [cols=",,,,,,,,",options="header",]
 |===
@@ -15,26 +17,28 @@ TAU provides three methods to track the performance of your application. Library
 
 The requirements for each method increases as we move down the table: tau_exec only requires a system with shared library support. Compiler based instrumentation requires re-compiling that target application and Source instrumentation aditionally requires PDT. For this reason we often recommend that users start with Library interposition and move down the table if more features are needed.
 
-[[TauLibraryInterposition]]
-== Dynamic instrumentation through library pre-loading
-Dynamic instrumentation is achieved through library pre-loading. The libraries chosen for pre-loading determine the scope of instrumentation. Some options include tracking MPI, io, memory, cuda, opencl library calls. MPI instrumentation is included by default the others are enabled by command-line options to `tau_exec`. More info at the `tau_exec` manual page. Dynamic instrumentation can be used on both uninstrumented binaries and binaries instrumented via one of the methods below, in this way different layers of instrumentation can be combined.
+[[taulibraryinterposition]]
+=== Dynamic instrumentation through library pre-loading
+
+Dynamic instrumentation is achieved through library pre-loading. The libraries chosen for pre-loading determine the scope of instrumentation. Some options include tracking MPI, io, memory, cuda, opencl library calls. MPI instrumentation is included by default the others are enabled by command-line options to `tau_exec` . More info at the `tau_exec` manual page. Dynamic instrumentation can be used on both uninstrumented binaries and binaries instrumented via one of the methods below, in this way different layers of instrumentation can be combined.
 
 To use `tau_exec` place this command before the application executable when running the application. In this example IO instrumentation is requested.
 
-[source]
 ----
 %> tau_exec -io ./a.out
     %> mpirun -np 4 tau_exec -io ./a.out
 ----
 
-== TAU scripted compilation
-=== Instrumenation
+=== TAU scripted compilation
+
+==== Instrumenation
+
 For more detailed profiles, TAU provides two means to compile your application with TAU: through your compiler or through source transformation using PDT.
 
-=== Compiler Based Instrumentation
+==== Compiler Based Instrumentation
+
 TAU provides these scripts: tau_cc.sh, tau_cxx.sh, tau_upc.sh, tau_f77.sh and tau_f90.sh to compile programs. You might use tau_cc.sh to compile a C program by typing:
 
-[source]
 ----
 %> module load tau
 %> tau_cc.sh -tau_options=-optCompInst samplecprogram.c
@@ -42,17 +46,15 @@ TAU provides these scripts: tau_cc.sh, tau_cxx.sh, tau_upc.sh, tau_f77.sh and ta
 
 On machines where a TAU module is not available, you will need to set the tau makefile and/or options. The makefile and options controls how will TAU will compile you application. Use
 
-[source]
 ----
 %>tau_cc.sh -tau_makefile=[path to makefile] \
             -tau_options=[option] samplecprogram.c
 ----
 
-The Makefile can be found in the `/[arch]/lib` directory of your TAU distribution, for example `/x86_64/lib/Makefile.tau-mpi-pdt`.
+The Makefile can be found in the `/[arch]/lib` directory of your TAU distribution, for example `/x86_64/lib/Makefile.tau-mpi-pdt` .
 
-You can also use a Makefile specified in an environment variable. To run tau_cc.sh so it uses the Makefile specified by environment variable `TAU_MAKEFILE`, type:
+You can also use a Makefile specified in an environment variable. To run tau_cc.sh so it uses the Makefile specified by environment variable `TAU_MAKEFILE` , type:
 
-[source]
 ----
 %>export TAU_MAKEFILE=[path to tau]/[arch]/lib/[makefile]
 %>export TAU_OPTIONS=-optCompInst
@@ -61,26 +63,40 @@ You can also use a Makefile specified in an environment variable. To run tau_cc.
 
 Similarly, if you want to set compile time options like selective instrumentation you can use the `TAU_OPTIONS` environment variable.
 
-=== Source Based Instrumentation
-TAU provides these scripts: tau_cc.sh, tau_cxx.sh, tau_upc.sh, tau_f77.sh and tau_f90.sh to instrument and compile programs. You might use tau_cc.sh to compile a C program by typing: [source] ---- %> module load tau %> tau_cc.sh samplecprogram.c ---- When setting the TAU_MAKEFILE make sure the Makefile name contains `pdt` because you will need a version of TAU built with PDT.
+==== Source Based Instrumentation
+
+TAU provides these scripts: tau_cc.sh, tau_cxx.sh, tau_upc.sh, tau_f77.sh and tau_f90.sh to instrument and compile programs. You might use tau_cc.sh to compile a C program by typing:
+
+----
+%> module load tau
+%> tau_cc.sh samplecprogram.c
+    
+    When setting the TAU_MAKEFILE make sure the Makefile name contains
+----
+
+When setting the TAU_MAKEFILE make sure the Makefile name contains `pdt` because you will need a version of TAU built with PDT.
 
 A list of options for the TAU compiler scripts can be found by typing `man tau_compiler.sh` or in this chapter of the reference guide.
 
-[[TAUCompilerOptions]]
-=== Options to TAU compiler scripts
-These are some commonly used options available to the TAU compiler scripts. Either set them via the `TAU_OPTIONS` environment variable or the `-tau_options=` option to ` tau_cc.sh, tau_cxx.sh, tau_upc.sh, tau_f77.sh and tau_f90.sh `
+[[taucompileroptions]]
+==== Options to TAU compiler scripts
 
+These are some commonly used options available to the TAU compiler scripts. Either set them via the `TAU_OPTIONS` environment variable or the `-tau_options=` option to `tau_cc.sh, tau_cxx.sh, tau_upc.sh, tau_f77.sh and tau_f90.sh`
+
+[horizontal]
 `-optVerbose`::
-  Enable verbose output (default: on)
+    Enable verbose output (default: on)
 `-optKeepFiles`::
-  Do not remove intermediate files
+    Do not remove intermediate files
 `-optShared`::
-  Use shared library of TAU (consider when using `tau_exec`
+    Use shared library of TAU (consider when using `tau_exec`
 
-[[SelectiveProfiling]]
-== Selectively Profiling an Application
-[[ManualSelectiveProfiling]]
-=== Custom Profiling
+[[selectiveprofiling]]
+=== Selectively Profiling an Application
+
+[[manualselectiveprofiling]]
+==== Custom Profiling
+
 TAU allows you to customize the instrumentation of a program by using a selective instrumentation file. This instrumentation file is used to manually control which parts of the application are profiled and how they are profiled. If you are using one of the TAU compiler wrapper scripts to instrument your application you can use the `-tau_options=-optTauSelectFile=<file>` option to enable selective instrumentation.
 
 [NOTE]
@@ -90,14 +106,10 @@ Selective instrumentation may be specified at runtime by setting the TAU_SELECT_
 
 To specify a selective instrumentation file, create a text file and use the following guide to fill it in:
 
-* Wildcards for routine names are specified with the
-				# mark (because *
-				symbols show up in routine signatures.)  The # mark is unfortunately the comment character
-        as well, so to specify a leading wildcard, place the entry in quotes.
-* Wildcards for file names are specified with * symbols.
+* Wildcards for routine names are specified with the `#` mark (because `*` symbols show up in routine signatures.) The `#` mark is unfortunately the comment character as well, so to specify a leading wildcard, place the entry in quotes.
 
+* Wildcards for file names are specified with `*` symbols.
 
-[source]
 ----
 Here is a example file:
 #Tell tau to not profile these functions
@@ -138,4 +150,3 @@ END_INSTRUMENT_SECTION
 ----
 
 Selective instrumentation files can be created automatically from `ParaProf` by right clicking on a trial and selecting the `Create Selective Instrumentation File` menu item.
-

@@ -1,5 +1,5 @@
-[[paraprof-intro]]
-= Introduction
+[[paraprof.intro]]
+=== Introduction
 
 ParaProf is a portable, scalable performance analysis tool included with the TAU distribution.
 
@@ -13,11 +13,11 @@ ParaProf requires _Oracle / Sun's_ Java 1.5 Runtime Environment for basic functi
 Most windows in ParaProf can export bitmap (png/jpg) and vector (svg/eps) images to disk (png/jpg) or print directly to a printer. This are available through the _File_ menu.
 ====
 
-[[paraprof-usage]]
-== Using ParaProf from the command line
-ParaProf is a java program that is run from the supplied paraprof script ( script (paraprof.bat for windows binary release). for windows binary release).
+[[paraprof.usage]]
+==== Using ParaProf from the command line
 
-[source]
+ParaProf is a java program that is run from the supplied `paraprof` script ( `paraprof.bat` for windows binary release).
+
 ----
 % paraprof --help
 Usage: paraprof [options] <files/directory>
@@ -55,30 +55,27 @@ or, in the case of multiple counters, directories named MULTI_* containing
 profile data.
 ----
 
-[[paraprof-formats]]
-== Supported Formats
+[[paraprof.formats]]
+==== Supported Formats
+
 ParaProf can load profile date from many sources. The types currently supported are:
 
-:leveloffset: +1
 include::../perfdmf/dataformats.adoc[]
-:leveloffset: -1
 
-[[paraprof-options]]
-== Command line options
+[[paraprof.options]]
+==== Command line options
+
 In addition to specifying the profile format, the user can also specify the following options
 
-* --fixnames - Use the fixnames option
-	  for gprof.  When C and Fortran code are mixed, the C routines have to be mapped
-	  to either .function or function_.  Strip the leading period or trailing underscore, if it is there.
-* --pack <file> - Rather
-	  than load the data and launch the GUI, pack the data into the specified file.
-* --dump - Rather than
-	  load the data and launch the GUI, dump the data to TAU Profiles.
-	  This can be used to convert supported formats to TAU Profiles.
-* --oss - Outputs profile
-	  data in OSS Style.  Example:
+* *--fixnames* - Use the fixnames option for gprof. When C and Fortran code are mixed, the C routines have to be mapped to either .function or function_. Strip the leading period or trailing underscore, if it is there.
 
-	  
+* *--pack <file>* - Rather than load the data and launch the GUI, pack the data into the specified file.
+
+* *--dump* - Rather than load the data and launch the GUI, dump the data to TAU Profiles. This can be used to convert supported formats to TAU Profiles.
+
+* *--oss* - Outputs profile data in OSS Style. Example:
+
+----
 -------------------------------------------------------------------------------
 Thread: n,c,t 0,0,0
 -------------------------------------------------------------------------------
@@ -87,7 +84,6 @@ Thread: n,c,t 0,0,0
      0.003   40.1%   96.1%         9682185         4205367         1  bar
          0    3.6%   99.7%          223173           17445         1  baz
    2.2E-05    0.3%  100.0%           14663             206         1  main
-* --summary - Output only summary
-	  information for OSS style output.
+----
 
-
+* *--summary* - Output only summary information for OSS style output.

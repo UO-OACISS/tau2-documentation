@@ -1,47 +1,80 @@
-[[Scripting]]
-= Running PerfExplorer Scripts
+[[scripting]]
+=== Running PerfExplorer Scripts
 
 As of version 2.0, PerfExplorer has officially supported a scripting interface. The scripting interface is useful for adding automation to PerfExplorer. For example, a user can load a trial, perform data reduction, extract out key phases, derive metrics, and plot the result.
 
-[[AnalysisComponents]]
-== Analysis Components
+[[analysiscomponents]]
+==== Analysis Components
+
 There are many operations available, including:
 
 * BasicStatisticsOperation
+
 * CopyOperation
+
 * CorrelateEventsWithMetadata
+
 * CorrelationOperation
+
 * DeriveMetricOperation
+
 * DifferenceMetadataOperation
+
 * DifferenceOperation
+
 * DrawBoxChartGraph
+
 * DrawGraph
+
 * DrawMMMGraph
+
 * ExtractCallpathEventOperation
+
 * ExtractEventOperation
+
 * ExtractMetricOperation
+
 * ExtractNonCallpathEventOperation
+
 * ExtractPhasesOperation
+
 * ExtractRankOperation
+
 * KMeansOperation
+
 * LinearRegressionOperation
+
 * LogarithmicOperation
+
 * MergeTrialsOperation
+
 * MetadataClusterOperation
+
 * PCAOperation
+
 * RatioOperation
+
 * ScalabilityOperation
+
 * TopXEvents
+
 * TopXPercentEvents
 
+[[scripting_interface]]
+==== Scripting Interface
 
-[[Scripting_Interface]]
-== Scripting Interface
-The scripting interface is in Python, and scripts can be used to build analysis workflows. The Python scripts control the Java classes in the application through the Jython interpreter (http://www.jython.org/). There are two types of components which are useful in building analysis scripts. The first type is the PerformanceResult interface, and the second is the PerformanceAnalysisComponent interface. For documentation on how to use the Java classes, see the javadoc in the perfexplorer source distribution, and the example scripts below. To build the perfexplorer javadoc, type [source] ---- %>./make javadoc ---- in the perfexplorer source directory.
+The scripting interface is in Python, and scripts can be used to build analysis workflows. The Python scripts control the Java classes in the application through the Jython interpreter (http://www.jython.org/). There are two types of components which are useful in building analysis scripts. The first type is the PerformanceResult interface, and the second is the PerformanceAnalysisComponent interface. For documentation on how to use the Java classes, see the javadoc in the perfexplorer source distribution, and the example scripts below. To build the perfexplorer javadoc, type
 
-[[ExampleScript]]
-== Example Script
-[source]
+----
+%>./make javadoc
+	in the perfexplorer source directory.
+----
+
+in the perfexplorer source directory.
+
+[[examplescript]]
+==== Example Script
+
 ----
 from glue import PerformanceResult
 from glue import PerformanceAnalysisOperation
@@ -182,4 +215,3 @@ print "--------------- JPython test script start ------------"
 glue()
 print "---------------- JPython test script end -------------"
 ----
-

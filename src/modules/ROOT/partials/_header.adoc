@@ -8,14 +8,18 @@
 :doctype: book
 :toc: left
 :toc-title: Table of Contents
-:toclevels: 3
+:toclevels: 4
 :sectnums:
 :sectlinks:
 :sectanchors:
 :source-highlighter: rouge
 :icons: font
 :title-logo-image: image:NewTauLogo.png[TAU Logo,150]
-
+:partnums:
+:lof:
+:lot:
+//:list-of-figures:
+//:list-of-tables:
 // Include the other partials
 include::_attributes.adoc[]
 

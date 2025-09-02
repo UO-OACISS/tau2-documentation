@@ -1,27 +1,30 @@
-[[paraprof-3d]]
-= 3-D Visualization
+[[paraprof.3d]]
+=== 3-D Visualization
 
-ParaProf displays massive parallel profiles through the use of OpenGL hardware acceleration through the 3D Visualization window. Each window is fully configurable with rotation, translation, and zooming capabilities. Rotation is accomplished by holding the left mouse button down and dragging the mouse. Translation is done likewise with the right mouse button. Zooming is done with the mousewheel and the + and - keyboard buttons. window. Each window is fully configurable with rotation, translation, and zooming capabilities. Rotation is accomplished by holding the left mouse button down and dragging the mouse. Translation is done likewise with the right mouse button. Zooming is done with the mousewheel and the + and - keyboard buttons.
+ParaProf displays massive parallel profiles through the use of OpenGL hardware acceleration through the _3D Visualization_ window. Each window is fully configurable with rotation, translation, and zooming capabilities. Rotation is accomplished by holding the left mouse button down and dragging the mouse. Translation is done likewise with the right mouse button. Zooming is done with the mousewheel and the + and - keyboard buttons.
 
-[[paraprof-trianglemesh]]
-== Triangle Mesh Plot
+[[paraprof.trianglemesh]]
+==== Triangle Mesh Plot
+
 .Triangle Mesh Plot
 image::trianglemeshplot.png[Triangle Mesh Plot,width="6in",align="center"]
 
 This visualization method shows two metrics for all functions, all threads. The height represents one chosen metric, and the color, another. These are selected from the drop-down boxes on the right.
 
-To pinpoint a specific value in the plot, move the Function and and Thread sliders to cycle through the available functions/threads. The values for the two metrics, in this case for sliders to cycle through the available functions/threads. The values for the two metrics, in this case for MPI_Recv() on on `Node 351`, the value is `14.37` seconds.
+To pinpoint a specific value in the plot, move the _Function_ and _Thread_ sliders to cycle through the available functions/threads. The values for the two metrics, in this case for `MPI_Recv()` on `Node 351` , the value is `14.37` seconds.
 
-[[paraprof-3dbarplot]]
-== 3-D Bar Plot
+[[paraprof.3dbarplot]]
+==== 3-D Bar Plot
+
 [[paraprof.3dbarplot.figure]]
 .3-D Mesh Plot
 image::3dview1.png[3-D Mesh Plot,width="6in",align="center"]
 
-This visualization method is similar to the triangle mesh plot. It simply displays the data using 3d bars instead of a mesh. The controls works the same. Note that in <<paraprof-3dbarplot-figure>> the transparency option is selected, which changes the way in which the selection model operates.
+This visualization method is similar to the triangle mesh plot. It simply displays the data using 3d bars instead of a mesh. The controls works the same. Note that in <<paraprof.3dbarplot.figure>> the transparency option is selected, which changes the way in which the selection model operates.
 
-[[paraprof-scatterplot]]
-== 3-D Scatter Plot
+[[paraprof.scatterplot]]
+==== 3-D Scatter Plot
+
 .3-D Scatter Plot
 image::scatterplot2.png[3-D Scatter Plot,width="6in",align="center"]
 
@@ -29,8 +32,9 @@ This visualization method plots the value of each thread along up to 4 axes. Eac
 
 Select functions using the button for each dimension, then select a metric. A single function across 4 metrics could be used, for example.
 
-[[paraprof-toplology]]
-== 3-D Topology Plot
+[[paraprof.toplology]]
+==== 3-D Topology Plot
+
 .3-D Topology Plot
 image::topology2.png[3-D Topology Plot,width="4in",align="center"]
 
@@ -52,10 +56,10 @@ If a Custom is selected the dimensions of the rectangular prism containing the c
 
 The Events tab controls which events are used to define the color values and positions of cores/processes in the display. For trail-specific and Custom topologies only event3(Color) can be changed. For topologies loaded in MESP definition files all four events may be used in calculation of the topology layout. In either case, interval, atomic or metadata values may be used to color or position points in the display.
 
-[[paraprof-commicationmatrix]]
-== 3-D Commication Matrix
+[[paraprof.commicationmatrix]]
+==== 3-D Commication Matrix
+
 .3-D Commication Matrix
 image::3DCommMatrix.png[3-D Commication Matrix,width="6in",align="center"]
 
 If a Trial has commication information (set TAU_COMM_MATRIX=1 at runtime of your application), then you can launch the 3D Commication window as shown.
-

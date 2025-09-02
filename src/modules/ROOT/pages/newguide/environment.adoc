@@ -1,5 +1,6 @@
-= Environment Variables
+== Environment Variables
 
+.TAU Environment Variables
 .TAU Environment Variables
 [cols=",",options="header",]
 |===
@@ -57,4 +58,3 @@ TAU_SAMPLING is dependent on the availability of BFD as determined by the -bfd c
 |TAU_CUPTI_PC_HWB |Set to the hardware buffer size (in MBytes) to use with cupti PC sampling (activated with the -cupti_pc option to tau_exec)
 |TAU_CUPTI_PC_PERIOD |Set to the sampling period to use with cupti PC sampling (activated with the -cupti_pc option to tau_exec)
 |===
-
