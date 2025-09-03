@@ -1,5 +1,5 @@
 [[applicationscenario]]
-== Some Common Application Scenario
+== Some Common Application Scenarios
 
 === Q. What routines account for the most time? How much?
 

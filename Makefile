@@ -4,13 +4,13 @@ REFERENCE_GUIDE_SRC := src/modules/ROOT/pages/referenceguide/referenceguide.adoc
 BUILD_DIR           := build
 HTML_SINGLE_DIR     := $(BUILD_DIR)/html-single
 PDF_DIR             := $(BUILD_DIR)/pdf
-CHUNKED_DIR         := $(BUILD_DIR)/chunked-html
-USER_GUIDE_HTML      := $(HTML_SINGLE_DIR)/user-guide.html
-INSTALL_GUIDE_HTML   := $(HTML_SINGLE_DIR)/install-guide.html
-REFERENCE_GUIDE_HTML := $(HTML_SINGLE_DIR)/reference-guide.html
-USER_GUIDE_PDF      := $(PDF_DIR)/user-guide.pdf
-INSTALL_GUIDE_PDF   := $(PDF_DIR)/install-guide.pdf
-REFERENCE_GUIDE_PDF := $(PDF_DIR)/reference-guide.pdf
+CHUNKED_DIR         := $(BUILD_DIR)/html-docs
+USER_GUIDE_HTML      := $(HTML_SINGLE_DIR)/tau-usersguide.html
+INSTALL_GUIDE_HTML   := $(HTML_SINGLE_DIR)/tau-installguide.html
+REFERENCE_GUIDE_HTML := $(HTML_SINGLE_DIR)/tau-referenceguide.html
+USER_GUIDE_PDF      := $(PDF_DIR)/tau-usersguide.pdf
+INSTALL_GUIDE_PDF   := $(PDF_DIR)/tau-installguide.pdf
+REFERENCE_GUIDE_PDF := $(PDF_DIR)/tau-referenceguide.pdf
 ANTORA_PLAYBOOK := antora-playbook.yml
 
 # Common flags for all Asciidoctor commands
@@ -25,11 +25,11 @@ ASCIIDOCTOR_PDF_FLAGS = $(ASCIIDOCTOR_FLAGS) \
 			 -a list-of-figures=true -a list-of-tables=true
 #			-a title-logo-image=$(CURDIR)/src/modules/ROOT/assets/images/NewTauLogo.png
 
-.PHONY: all html-single pdf html-chunked clean
+.PHONY: all pdf html-chunked clean
 
 NAV_ADOC = src/modules/ROOT/nav.adoc
 
-all: html-single pdf html-chunked
+all: pdf html-chunked
 
 html-single: $(USER_GUIDE_HTML) $(INSTALL_GUIDE_HTML) $(REFERENCE_GUIDE_HTML)
 	@echo "Single-page HTML generation complete."
