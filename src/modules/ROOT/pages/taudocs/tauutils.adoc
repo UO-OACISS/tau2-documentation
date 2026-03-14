@@ -560,6 +560,8 @@ Use this script to perform runtime performance tracking on either an instrumente
     captures the events provided by -rocm along with PC sampling from the ROCm api
 -tau_ebs_resolution=<file|function|line>::
     process sampled events at the file/function/line level depending on the given argument. line is the default. the environment variable TAU_EBS_RESOLUTION can be set to one of these options to achieve the same effect.
+-ittnotify::
+    Track Intel ITTNotify tasks.
 -monitoring::
     monitors hardware counters and other commands by polling periodically as specified in a tau_monitoring.json file included in the run directory. Example:
 
@@ -1182,3 +1184,25 @@ TAU can profile PySpark applications using Spark 2.2 or later and Python 2.7 or 
 
 .Documentation
 Additional documentation and examples can be found in the pyspark subdirectory of the examples directory in your TAU installation.
+
+[[tau_diff.py]]
+=== tau_diff.py
+
+Compares two TAU performance profiles or directories of profiles.
+
+.Options
+[horizontal]
+`path1`::
+Path to the first profile or directory. (first positional argument)
+`path2`::
+Path to the second profile or directory. (second positional argument)
+`-h` `--help`::
+show a help message and exit
+`-o OUTPUT` `--output OUTPUT`::
+Path for the output file or directory. Defaults to ./tau_diff_results
+`-t THRESHOLD` `--threshold THRESHOLD`::
+Report entries where any metric's % change exceeds this value. (Default: 0.0)
+`--sort-by Calls|Subrs|Excl|Incl|alpha|original`::
+Sort the report by the change in a metric column, alphabetically, or by the original order in the first profile. (Default: Incl)
+`--check`::
+Check-only mode. Exits with 0 if no differences are greater than the threshold, 1 otherwise. Suppresses all output files.

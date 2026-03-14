@@ -3,9 +3,9 @@
 // EDIT THESE VALUES WHEN YOU RELEASE A NEW VERSION
 //
 // The current version of the TAU software
-:project-version: 2.34.1
+:project-version: 2.35
 // The date of the documentation update
-:revdate: May 29, 2025
+:revdate: November 6, 2025
 //
 //-----------------------------------------------
 // These values rarely change

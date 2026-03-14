@@ -154,13 +154,25 @@ In conjunction with -rocm provides the functionality of both rocprofile and roct
 +
 Specifies configuration with support for Intel OneAPI's Level Zero. This option can also be submitted with a directory (-level_zero=<directory>). Use in conjunction with the -opencl configuration option as needed. link:https://spec.oneapi.com/level-zero/latest/core/INTRO.html[Level Zero]
 
+* `-force_new_l0`
++
+Use the most up to date Level Zero profiler. This is typically the default. Overrides detection logic.
+
+* `-force_legacy_l0`
++
+Use the legacy Level Zero profiler. The need for this is typically auto-detected. Overrides detection logic. 
+
 * `-epilog=<directory>`
 +
 Specifies the directory where the EPILOG tracing package link:http://www.fz-juelich.de/zam/kojak/epilog/[EPILOG] is installed.This option should be used in conjunction with the -TRACE option to generate binary EPILOG traces (instead of binary TAU traces). EPILOG traces can then be used with other tools such as EXPERT. EPILOG comes with its own implementation of the MPI wrapper library and the POMP library used with Opari. Using option overrides TAU's libraries for MPI, and OpenMP.
 
 * `-otf=<directory>`
 +
-Specifies the location of the OTF trace libraries generation package. TAU's binary traces can be converted to the OTF format using tau2otf, a tool that links with the OTF library.
+Specifies the location of the OTF trace libraries generation package. TAU's binary traces can be converted to the OTF format using tau2otf, a tool that links with the OTF library. Set `TAU_TRACE_FORMAT=otf2` to generate OTF traces, viewable in vampirtrace, instead of TAU's default trace format.
+
+* `-perfetto`
++
+Causes TAU to build with Perfetto trace output support. Set `TAU_TRACE_FORMAT=perfetto` to generate Perfetto traces, viewable in the online Perfetto trace viewer, instead of TAU's default trace format.
 
 * `-vtf=<directory>`
 +
@@ -196,6 +208,10 @@ Specifies the directory where the link:http://www.sclasca.org[SCALASCA] package 
 * `-pthread`
 +
 Specifies pthread as the thread package to be used. In the default mode, no thread package is used.
+
+* `-ittnotify`
++
+Build the Intel ITTNotify collector.
 
 * `-opari_region`
 +
@@ -360,7 +376,11 @@ Path to the Score-P measurement system. Set the enviroment varible SCOREP_PROFIL
 
 * `-help`
 +
-Lists all the available configure options and quits.
+Lists available configure options and quits.
+
+* `-fullhelp`
++
+Lists all available configure options, including obscure or deprecated ones, and quits.
 
 ==== tau_setup
 

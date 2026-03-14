@@ -7,6 +7,7 @@
 |VARIABLE NAME |DESCRIPTION
 |TAU_PROFILE |Set to 1 to have TAU profile your code
 |TAU_TRACE |Set to 1 to have TAU trace your code
+|TAU_TRACE_FORMAT |Set to `otf2` or `perfetto` to output those trace formats instead of TAU's default. TAU must be configured with support for those formats.
 |TAU_METRICS |Colon delimited list of TAU/PAPI metrics to profile
 |PAPI_EVENT |Sets the hardware counter to use when TAU is configured with -PAPI. See link:#HardwarePerformanceCounters[???]
 |PCL_EVENT |Sets the hardware counter to use when TAU is configured with -PCL. See link:#HardwarePerformanceCounters[???]
@@ -57,4 +58,5 @@ TAU_SAMPLING is dependent on the availability of BFD as determined by the -bfd c
 |TAU_THREAD_PER_GPU_STREAM |Set this to 1 to report each GPU strem as a distinct TAU thread. Currently supports CUPTI only.
 |TAU_CUPTI_PC_HWB |Set to the hardware buffer size (in MBytes) to use with cupti PC sampling (activated with the -cupti_pc option to tau_exec)
 |TAU_CUPTI_PC_PERIOD |Set to the sampling period to use with cupti PC sampling (activated with the -cupti_pc option to tau_exec)
+|L0_METRICGROUP |Specify Intel GPU Metrics. Check available metrics with unitrace `--metric-list` or `examples/gpu/oneapi/l0_check_metrics`
 |===
