@@ -502,6 +502,316 @@ pytau.stop(x)
 
 shows how two timers x and y are created and used. Note, multiple timers can be nested, but not overlapping. Overlapping timers are detected by TAU at runtime and flagged with a warning (as exclusive time is not defined when timers overlap).
 
+[[runningjulia]]
+=== Running a Julia application with TAU
+
+Julia applications are profiled using `tau_julia` , which is a wrapper around `julia` that makes the `TAUProfile` module available automatically. TAU provides the `TAUProfile.jl` package with three instrumentation approaches: manual timers, macro-based instrumentation, and automatic whole-program instrumentation.
+
+To use Julia support, configure TAU with the `-julia` and `-ittnotify` flags. The `-ittnotify` flag enables TAU to resolve symbols in JIT-compiled Julia code when using event-based sampling.
+
+----
+% ./configure -bfd=download -dwarf=download -julia -ittnotify
+% make clean install
+----
+
+For MPI or CUDA support, combine flags as needed:
+
+----
+% ./configure -bfd=download -dwarf=download -julia -ittnotify \
+    -mpi -c++=mpicxx -cc=mpicc -fortran=mpif90
+% ./configure -bfd=download -dwarf=download -julia -ittnotify \
+    -cuda=/path/to/cuda
+----
+
+[WARNING]
+====
+Do not use `-unwind=download` when configuring TAU for Julia. Julia ships with its own copy of libunwind, and if TAU downloads and links a different version, the two libraries will conflict at runtime, causing crashes or corrupted stack traces. If you need `-unwind` support, you must configure TAU to use the same libunwind that Julia uses (e.g., `-unwind=/path/to/julia/lib`).
+====
+
+To run a Julia script with TAU profiling, use `tau_julia` . A `--` separator separates `tau_julia` flags from Julia arguments:
+
+----
+% tau_julia -T serial,julia,ittnotify -- script.jl
+% pprof
+----
+
+`tau_julia` accepts the same flags as `tau_exec` . Use `-T` to select a TAU configuration:
+
+----
+% tau_julia -T julia,ittnotify,mpi -- mpi_script.jl
+% tau_julia -T julia,ittnotify,cupti -cupti -- cuda_script.jl
+% tau_julia -T julia,ittnotify -ittnotify -ebs -- script.jl
+----
+
+When using event-based sampling (`-ebs`), pass `-ittnotify` as a `tau_julia` flag so that sampled addresses in JIT-compiled Julia code can be resolved to function names.
+
+==== Manual Timers
+
+The simplest form of instrumentation uses `tau_start` and `tau_stop` to bracket regions of code. The `TAUProfile` module is automatically available when using `tau_julia` .
+
+----
+using TAUProfile
+
+function manual_timing_example()
+    tau_start("manual_timing_example")
+    println("Hello world!")
+    sleep(0.5)
+    result = sum(rand(1000, 1000))
+    tau_stop("manual_timing_example")
+    return result
+end
+
+manual_timing_example()
+----
+
+Every `tau_start` must have a matching `tau_stop` . Mismatched calls produce incorrect profiles. If the timed region can throw an exception, use the `@tau` macro instead.
+
+==== Macro Instrumentation
+
+The `@tau` macro wraps an expression with TAU timing. The timer is automatically stopped when the expression completes, including when an exception is thrown. `@tau` blocks can be nested.
+
+----
+using TAUProfile
+
+result = @tau "outer_timer" begin
+    sleep(0.2)
+
+    result1 = @tau "inner_computation_1" begin
+        sleep(0.1)
+        sum(rand(100, 100))
+    end
+
+    result2 = @tau "inner_computation_2" begin
+        sleep(0.1)
+        sum(rand(200, 200))
+    end
+
+    result1 + result2
+end
+----
+
+The `@tau_func` macro wraps an entire function definition with TAU timing. The timer name is derived from the function name automatically. It works with both standard and short-form function definitions.
+
+----
+@tau_func function matrix_multiply(A, B)
+    return A * B
+end
+
+@tau_func quick_sum(arr) = sum(arr)
+----
+
+==== Automatic Instrumentation with `@tau_rewrite`
+
+The `@tau_rewrite` macro provides whole-program automatic instrumentation. It compiles the target function and all its callees with TAU entry/exit hooks inserted automatically.
+
+----
+using TAUProfile
+
+function fibonacci(n)
+    if n <= 1
+        return n
+    end
+    return fibonacci(n - 1) + fibonacci(n - 2)
+end
+
+function recursive_example()
+    result = fibonacci(10)
+    return result
+end
+
+my_sum(arr) = sum(arr)
+
+function rewrite_example()
+    println(recursive_example())
+    arr = collect(1:100)
+    s = my_sum(arr)
+    println(s)
+end
+
+@tau_rewrite rewrite_example()
+----
+
+In this example, `rewrite_example` , `recursive_example` , `fibonacci` , and `my_sum` are all automatically instrumented, along with any library functions they call. After the call completes, the original uninstrumented method sources are restored.
+
+==== Selective Instrumentation for `@tau_rewrite`
+
+By default, `@tau_rewrite` instruments the entire call graph, which can produce very large profiles. Several functions are available to control which functions are instrumented. These must be called _before_ `@tau_rewrite` .
+
+===== Excluding and Including Modules
+
+`tau_rewrite_exclude_module` excludes all functions defined in a module from instrumentation. By default, submodules are also excluded. Pass `exact=true` to exclude only the exact module. Accepts Module objects, Symbols, or Strings. Multiple modules can be passed in a single call.
+
+----
+tau_rewrite_exclude_module(Base)
+tau_rewrite_exclude_module(:Base, :GPUArrays, :GPUCompiler)
+tau_rewrite_exclude_module(Base; exact=true)
+----
+
+`tau_rewrite_include_module_only` provides a whitelist. When the whitelist is non-empty, _only_ functions in whitelisted modules are instrumented.
+
+----
+tau_rewrite_include_module_only(MyModule)
+tau_rewrite_include_module_only(ModA, ModB)
+----
+
+===== Excluding Functions
+
+`tau_rewrite_exclude_function` excludes specific functions by function object, Symbol, or String. `tau_rewrite_exclude_prefix` excludes all functions whose name starts with a given prefix.
+
+----
+tau_rewrite_exclude_function(my_helper)
+tau_rewrite_exclude_function(:my_helper)
+tau_rewrite_exclude_prefix("_internal_")
+----
+
+===== Depth Limits
+
+`tau_rewrite_set_recursion_limit` controls how deep into the call graph instrumentation reaches. A global limit controls the maximum depth from the root function. Per-module limits control depth within a specific module's call chain and reset when crossing module boundaries. Setting `n=0` means unlimited (the default).
+
+----
+tau_rewrite_set_recursion_limit(4)
+tau_rewrite_set_recursion_limit(Base, 2)
+@tau_rewrite main()
+----
+
+
+===== Deferred Execution Contexts
+
+By default, functions called only from `@spawn` , `@async` , or callbacks may not be instrumented. Enable `tau_rewrite_deferred_contexts` to instrument these as well:
+
+----
+tau_rewrite_deferred_contexts(true)
+@tau_rewrite main()
+----
+
+==== Multithreaded Julia
+
+TAU supports profiling multithreaded Julia programs. Start Julia with multiple threads and enable deferred context tracing to ensure spawned tasks are instrumented:
+
+----
+% JULIA_NUM_THREADS=8 tau_julia -T julia,ittnotify,pthread -- script.jl
+----
+
+----
+using Base.Threads
+using TAUProfile
+
+function worker(id::Int, n::Int)
+    total = zero(Float64)
+    for i in 1:n
+        total += sin(Float64(i) * 0.001)
+    end
+    return total
+end
+
+function main()
+    tasks = [@spawn(worker(i, 1_000_000)) for i in 1:100]
+    results = fetch.(tasks)
+    println("Sum: $(sum(results))")
+end
+
+tau_rewrite_exclude_module(Base)
+tau_rewrite_deferred_contexts(true)
+@tau_rewrite main()
+----
+
+==== Complete Example
+
+This example demonstrates a typical workflow combining `@tau_rewrite` with depth limits to control profile size:
+
+----
+using Printf: @printf
+using TAUProfile
+
+function profile_test(n)
+    @printf "Running loop of size %d\n" n
+    for i = 1:n
+        A = randn(100, 100, 20)
+        m = maximum(A)
+        Am = mapslices(sum, A; dims=2)
+        B = A[:, :, 5]
+        Bsort = mapslices(sort, B; dims=1)
+        b = rand(100)
+        C = B .* b
+    end
+end
+
+function main()
+    profile_test(1)
+    profile_test(10)
+    profile_test(100)
+end
+
+tau_rewrite_set_recursion_limit(4)
+tau_rewrite_set_recursion_limit(Base, 2)
+@tau_rewrite main()
+----
+
+----
+% tau_julia -T serial,julia,ittnotify -- script.jl
+% pprof
+----
+
+==== TAUProfile.jl API Summary
+
+.TAUProfile.jl Exported Functions
+[cols="1,3",options="header"]
+|===
+|Function |Description
+
+|`tau_start(name)`
+|Start a named TAU timer.
+
+|`tau_stop(name)`
+|Stop a named TAU timer.
+
+|`@tau name expr`
+|Time an expression with automatic start/stop and exception safety.
+
+|`@tau_func func_def`
+|Wrap a function definition with automatic timing.
+
+|`@tau_rewrite f(args...)`
+|Automatically instrument `f` and all callees, then call.
+
+|`tau_rewrite_and_call(f, args...)`
+|Functional form of `@tau_rewrite` .
+
+|`tau_rewrite(f, argtypes)`
+|Compile with instrumentation and return a callable wrapper.
+
+|`tau_rewrite_exclude_function(f)`
+|Exclude a function from automatic instrumentation.
+
+|`tau_rewrite_exclude_prefix(prefix)`
+|Exclude functions matching a name prefix.
+
+|`tau_rewrite_exclude_module(mod; exact=false)`
+|Exclude a module (and optionally its submodules).
+
+|`tau_rewrite_include_module_only(mod; exact=false)`
+|Whitelist a module; only whitelisted modules are instrumented.
+
+|`tau_rewrite_set_recursion_limit(n)`
+|Set global call depth limit.
+
+|`tau_rewrite_set_recursion_limit(mod, n; exact=false)`
+|Set per-module call depth limit.
+
+|`tau_rewrite_set_min_complexity(n; skip_loops=true)`
+|Skip trivial functions below a complexity threshold.
+
+|`tau_rewrite_deferred_contexts(enabled)`
+|Enable/disable instrumentation of `@spawn` / `@async` contexts.
+
+|`tau_rewrite_include_types(enabled)`
+|Include/exclude argument types in timer labels.
+
+|`tau_rewrite_reset_exclusions()`
+|Reset all instrumentation options to defaults.
+|===
+
+
 [[pprof]]
 === pprof
 
