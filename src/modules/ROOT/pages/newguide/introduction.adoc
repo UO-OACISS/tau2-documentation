@@ -150,6 +150,10 @@ Specifies configuration with support for AMD ROCTracer data collection. Must be 
 +
 In conjunction with -rocm provides the functionality of both rocprofile and roctracer, plus rocm pc sampling with the -rocm_pc option for tau_exec. Requires ROCm 6.2 or greater.
 
+* `-elfutils=<directory>` or `-elfutils=<download>`
++
+In conjunction with -rocprofsdk provides the functionality of rocm pc sampling with the -rocm_pc option for tau_exec. Requires ROCm 6.2 or greater.
+
 * `-level_zero`
 +
 Specifies configuration with support for Intel OneAPI's Level Zero. This option can also be submitted with a directory (-level_zero=<directory>). Use in conjunction with the -opencl configuration option as needed. link:https://spec.oneapi.com/level-zero/latest/core/INTRO.html[Level Zero]

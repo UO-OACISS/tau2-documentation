@@ -506,6 +506,8 @@ Use this script to perform runtime performance tracking on either an instrumente
     track GPU events via Nvidia's CUPTI interface (Must be configured with -cupti=<dir>, Preferred for CUDA 4.1 or later).
 -cupti_pc::
     track pc sampling events through cupti. Mutually exclusive with the -cupti option. Control hardware buffer size and sampling period with TAU_CUPTI_PC_HWB and TAU_CUPTI_PC_PERIOD environment variables. Generates CUBIN files which may be deleted. Compile application with -lineinfo or -G to make source lines available for PC samples.
+-nccl::
+    track NCCL events using the NCCL performance plugin API
 -um::
     in conjunction with -cupti adds support for the Unified Memory GPUs. Requires CUDA 6.5 or later.
 -opencl::
@@ -557,13 +559,21 @@ Use this script to perform runtime performance tracking on either an instrumente
 -rocm::
     capture events and metadata from the ROCm performance API
 -rocm_pc::
-    captures the events provided by -rocm along with PC sampling from the ROCm api
+    captures the events provided by -rocm along with PC sampling from the ROCm api, tries to set stochastic, if not available, uses host trap
+-rocm_pc_host::
+    captures the events provided by -rocm along with PC sampling from the ROCm api, forces host trap sampling
+-rocm_pc_stoc::
+    captures the events provided by -rocm along with PC sampling from the ROCm api, forces stochastic sampling
 -tau_ebs_resolution=<file|function|line>::
     process sampled events at the file/function/line level depending on the given argument. line is the default. the environment variable TAU_EBS_RESOLUTION can be set to one of these options to achieve the same effect.
 -ittnotify::
     Track Intel ITTNotify tasks.
 -monitoring::
     monitors hardware counters and other commands by polling periodically as specified in a tau_monitoring.json file included in the run directory. Example:
+-l0::
+    captures events and metadata from the Level Zero performance API
+-l0_pc::
+    track pc sampling events through level zero API. Control sampling interval in microseconds with TAU_L0_SAMPLING_INTERVAL environmental variable.
 
 ----
 {
